@@ -6,7 +6,11 @@ public class Main {
 		// TODO Auto-generated method stub
 		// Conflicto
 
-		int a = 2;
+		int a = 1;
+
+
+		
+
 		// Conflicto		
 
 		// Conflicto
