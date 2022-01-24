@@ -1,56 +1,31 @@
 package com.sprint3.models;
 
-public class Flower {
+public class Flower extends Product {
 
-	private int flowerId;
-	private String flowerName;
-	private String flowerColour;
-	private float flowerPrice;
+	private String colour;
 
-	public Flower(int flowerId, String flowerName, String flowerColour, float flowerPrice) {
+	public Flower(String colour) {
 		super();
-		this.flowerId = flowerId;
-		this.flowerName = flowerName;
-		this.flowerColour = flowerColour;
-		this.flowerPrice = flowerPrice;
+		this.colour = colour;
 	}
-
-	public int getFlowerId() {
-		return flowerId;
-	}
-
-	public void setFlowerId(int flowerId) {
-		this.flowerId = flowerId;
-	}
-
-	public String getFlowerName() {
-		return flowerName;
-	}
-
-	public void setFlowerName(String flowerName) {
-		this.flowerName = flowerName;
-	}
-
+	
+	
 	public String getFlowerColour() {
-		return flowerColour;
+		return colour;
+	}
+	public void setFlowerColour(String colour) {
+		this.colour = colour;
 	}
 
-	public void setFlowerColour(String flowerColour) {
-		this.flowerColour = flowerColour;
-	}
-
-	public float getFlowerPrice() {
-		return flowerPrice;
-	}
-
-	public void setFlowerPrice(float flowerPrice) {
-		this.flowerPrice = flowerPrice;
+	
+	@Override
+	public String toString() {
+		return "Flower [colour=" + colour + "]";
 	}
 
 	@Override
-	public String toString() {
-		return "Flower [flowerId=" + flowerId + ", flowerName=" + flowerName + ", flowerColour=" + flowerColour
-				+ ", flowerPrice=" + flowerPrice + "]";
+	void toDo() {
+		// TODO Auto-generated method stub
+		
 	}
-
 }
