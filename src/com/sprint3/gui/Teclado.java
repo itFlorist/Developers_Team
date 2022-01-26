@@ -1,4 +1,4 @@
-package com.sprint3.util;
+package com.sprint3.gui;
 
 
 import java.util.InputMismatchException;
