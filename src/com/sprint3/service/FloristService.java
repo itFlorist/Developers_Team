@@ -3,7 +3,7 @@ package com.sprint3.service;
 import java.io.*;
 import java.util.*;
 
-public class FloristService {
+public class FloristService implements Serializable {
 
 	/**
 	 * 
@@ -13,6 +13,13 @@ public class FloristService {
 	private int floristId;
 	private String floristName;
 	private ArrayList<FloristService> floristerias;
+
+	public FloristService() {
+		super();
+		this.floristId = FloristService.id++;
+//		this.floristName = floristName;
+		this.floristerias = new ArrayList<FloristService>();
+	}
 
 	public FloristService(int floristId, String floristName) {
 		super();
@@ -45,7 +52,7 @@ public class FloristService {
 		this.floristerias = floristerias;
 	}
 
-	void run() throws Exception {
+	public void runFloristService() throws Exception {
 
 		boolean exit = false;
 
@@ -82,7 +89,7 @@ public class FloristService {
 			System.out.println("1. Add Florist.");
 			System.out.println("2. Delete Florist.");
 			System.out.println("3. Show Florist.");
-			System.out.println("4. Manage your Florist´s shop."); // redirigir a la floristería
+			System.out.println("4. Manage your Florist´s shop."); // redirigir a Florist
 			System.out.println("0. Exit.\n");
 			choice = sc.nextByte();
 			if (choice < MIN || choice > MAX) {
@@ -165,7 +172,12 @@ public class FloristService {
 		String floristName;
 		System.out.println("Type the name of the florist to be managed");
 		floristName = sc.nextLine();
-		// redirigir a Florist
+		
+		for (FloristService florist : floristerias) {
+			if (floristName.equalsIgnoreCase(florist.getFloristName())) {
+			 //florist.runFlorist(); // (redirigir a Florist)
+			}
+		}
 	}
 
 	public static void oos(ArrayList<FloristService> floristerias) throws Exception {
