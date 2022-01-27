@@ -1,5 +1,9 @@
 package com.sprint3.dao;
 
-public class FloristDao {
+import java.util.List;
+import com.sprint3.dto.Product;
+
+public interface FloristDao {
+
 
 }
