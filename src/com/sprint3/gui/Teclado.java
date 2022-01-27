@@ -95,6 +95,15 @@ public class Teclado {
         } while (!correcto);
         return numero;
     }
+    //añadido para poder introducir máximo y mínimo.
+    public static int leerInt(String mensaje, int min, int max) {
+    	int numero;
+        do {
+            numero = leerInt(mensaje);
+        } while (numero < min || numero > max);
+
+        return numero;
+    }
     
     /** 
      * Este método se encarga de leer un byte de teclado
@@ -170,6 +179,10 @@ public class Teclado {
             }
         } while (!correcto);
         return retorno;
+    }
+    //añadido para hacer print
+    public static void print(String mensaje) {
+    	System.out.println(mensaje);
     }
 }
 
