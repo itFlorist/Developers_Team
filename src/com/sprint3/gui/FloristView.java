@@ -2,7 +2,7 @@ package com.sprint3.gui;
 
 import com.sprint3.dto.Tree;
 
-public class ProductView {
+public class FloristView {
 
 	/**
 	 * This class contains the menu's methods
@@ -10,7 +10,7 @@ public class ProductView {
 
 	private Teclado io;
 
-	public ProductView(Teclado io) {
+	public FloristView(Teclado io) {
 		this.io = io;
 	}
 
