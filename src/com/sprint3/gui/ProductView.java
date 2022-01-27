@@ -1,5 +1,7 @@
 package com.sprint3.gui;
 
+import com.sprint3.dto.Tree;
+
 public class ProductView {
 
 	/**
@@ -21,7 +23,8 @@ public class ProductView {
 		System.out.print(">> ");
 	}
 
-	public static void showAddMenu() {
+	// Method that prints on console the AddMenu and gets a selection from the user.
+	public int printAddMenuAndGetSelection() {
 		System.out.println(" ");
 		System.out.println(" ADD MENU");
 		System.out.println(" ");
@@ -34,6 +37,8 @@ public class ProductView {
 		System.out.println("************************************************");
 		System.out.println(" ");
 		System.out.print(">> ");
+
+		return LecturaDatos.leerInt("Please select one option from the above.");
 	}
 
 	public static void showDeleteMenu() {
@@ -49,6 +54,28 @@ public class ProductView {
 		System.out.println("************************************************");
 		System.out.println(" ");
 		System.out.print(">> ");
+	}
+
+	public void displayUnknownCommandBanner() {
+		System.out.println("Unknown command!");
+	}
+
+	public void displayCreateTreeBanner() {
+		System.out.println("=== Add Tree ===");
+	}
+
+	public Tree getNewTreeInfo() {
+		int id = LecturaDatos.leerInt("Please enter the Tree id");
+		String name = LecturaDatos.leerLinea("Please enter the Tree name");
+		float price = LecturaDatos.leerFloat("Please enter the Tree price");
+		float height = LecturaDatos.leerFloat("Please enter the Tree height");
+		// Instantiating a new Tree object using the height to satisfy the constructor
+		// requirement
+		Tree currentTree = new Tree(id, name, price, height);
+		currentTree.setName(name);
+		currentTree.setPrice(price);
+		currentTree.setHeight(height);
+		return currentTree;
 	}
 
 }
