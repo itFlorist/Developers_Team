@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.sprint3.dto.Product;
+import com.sprint3.dto.Florist;
 import com.sprint3.dto.Tree;
 
-public class ProductDaoImpl {
+public class FloristDaoImpl {
 
 
 
@@ -37,12 +37,12 @@ public class ProductDaoImpl {
 	}*/
 
 
-	private Map<Integer, Product> stock = new HashMap<>();
+	private Map<Integer, Florist> stock = new HashMap<>();
 	private final String FLORIST_FILE;
 
-	public Product addTree(int id, Tree tree) {
+	public Florist addTree(int id, Tree tree) {
 		loadFlorist();
-		Product newTree = stock.put(id, tree);
+		Florist newTree = stock.put(id, tree);
 		writeFlorist();
 		return newTree;
 	}
