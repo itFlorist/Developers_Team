@@ -8,7 +8,7 @@ import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
 
-public class FloristView {
+public class FloristManagerView {
 
 	private List<Product> stock;
 
