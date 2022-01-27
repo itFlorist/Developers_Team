@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.sprint3.dto.Florist;
+import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
 
 public class FloristDaoImpl {
@@ -37,12 +37,12 @@ public class FloristDaoImpl {
 	}*/
 
 
-	private Map<Integer, Florist> stock = new HashMap<>();
+	private Map<Integer, Product> stock = new HashMap<>();
 	private final String FLORIST_FILE;
 
-	public Florist addTree(int id, Tree tree) {
+	public Product addTree(int id, Tree tree) {
 		loadFlorist();
-		Florist newTree = stock.put(id, tree);
+		Product newTree = stock.put(id, tree);
 		writeFlorist();
 		return newTree;
 	}
