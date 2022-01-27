@@ -1,5 +1,7 @@
 package com.sprint3.gui;
 
+import com.sprint3.dto.Tree;
+
 public class ProductView {
 
 	/**
@@ -11,6 +13,24 @@ public class ProductView {
 	public ProductView(Teclado io) {
 		this.io = io;
 	}
+
+
+	// Method that prints on console the AddMenu and gets a selection from the user.
+	public int printAddMenuAndGetSelection() {
+		System.out.println(" ");
+		System.out.println(" ADD MENU");
+		System.out.println(" ");
+		System.out.println("************************************************");
+		System.out.println("*  Please, choose an option: ");
+		System.out.println("*    1.-Add Tree");
+		System.out.println("*    2.-Add Flower");
+		System.out.println("*    3.-Add Decoration");
+		System.out.println("*    0.-Back to Principal ProductView");
+		System.out.println("************************************************");
+		System.out.println(" ");
+		System.out.print(">> ");
+
+		//return io.leerInt("Please select one option from the above.");
 
 	public int menuProduct() {
 
@@ -26,6 +46,7 @@ public class ProductView {
 
 		return io.leerInt("Please select one choice.", 1, 7);
 
+
 	}
 
 	public void displayErrorMessage(String errorMsg) {
@@ -34,9 +55,29 @@ public class ProductView {
 	}
 
 	public void displayUnknownCommandBanner() {
+
 		io.print("Unknown command!");
-		
 	}
+
+	public void displayCreateTreeBanner() {
+		System.out.println("=== Add Tree ===");
+	}
+
+	public Tree getNewTreeInfo() {
+		int id = LecturaDatos.leerInt("Please enter the Tree id");
+		String name = LecturaDatos.leerLinea("Please enter the Tree name");
+		float price = LecturaDatos.leerFloat("Please enter the Tree price");
+		float height = LecturaDatos.leerFloat("Please enter the Tree height");
+		// Instantiating a new Tree object using the height to satisfy the constructor
+		// requirement
+		Tree currentTree = new Tree(id, name, price, height);
+		currentTree.setName(name);
+		currentTree.setPrice(price);
+		currentTree.setHeight(height);
+		return currentTree;
+	}
+
+
 }
 
 //	public static void showMenuPrincipal() {
