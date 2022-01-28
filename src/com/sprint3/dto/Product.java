@@ -10,8 +10,6 @@ public abstract class Product {
 	private float price;
 
 
-
-	
 	
 	public Product() {}
 	
@@ -21,7 +19,6 @@ public abstract class Product {
 		this.id = Product.id++;
 		this.name = name;
 		this.price = price;
-		this.stock = new ArrayList<Product>();
 	}
 
 	public int getId() {

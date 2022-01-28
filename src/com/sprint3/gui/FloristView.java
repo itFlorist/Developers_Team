@@ -14,7 +14,7 @@ public class FloristView {
 		this.io = io;
 	}
 
-
+/*
 	// Method that prints on console the AddMenu and gets a selection from the user.
 	public int printAddMenuAndGetSelection() {
 		System.out.println(" ");
@@ -29,9 +29,12 @@ public class FloristView {
 		System.out.println("************************************************");
 		System.out.println(" ");
 		System.out.print(">> ");
-
+		
 		//return io.leerInt("Please select one option from the above.");
 
+	}
+*/
+		
 	public int menuProduct() {
 
 		io.print("\nMAIN MENU");
@@ -75,6 +78,10 @@ public class FloristView {
 		currentTree.setPrice(price);
 		currentTree.setHeight(height);
 		return currentTree;
+	}
+
+	public void displayRemoveProductBanner() {
+		io.print("-- Delete Product --");
 	}
 
 

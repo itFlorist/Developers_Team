@@ -15,8 +15,6 @@ public class FloristDaoImpl {
 
 
 /*
-	private void add(List<Product> stock) {
-	}
 
 	private void delete(List<Product> stock) {
 	}
