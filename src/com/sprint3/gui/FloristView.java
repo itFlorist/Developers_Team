@@ -84,6 +84,10 @@ public class FloristView {
 		io.print("-- Delete Product --");
 	}
 
+	public int getProductIdChoice() {        
+		return io.leerInt("Please enter Product Id");
+	}
+
 
 }
 

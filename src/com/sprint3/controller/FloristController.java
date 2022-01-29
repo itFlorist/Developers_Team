@@ -94,8 +94,8 @@ public class FloristController {
 	
 	private void removeProduct() {
 		floristView.displayRemoveProductBanner();
-        String title = floristView.getDvdTitleChoice();
-        Product removedDvd = floristDao.removeDvd(title);
+        int id = floristView.getProductIdChoice();
+        Product removedProduct = floristDao.removeProduct(id);
         floristView.displayRemoveResult(removedDvd);
 	}
 
