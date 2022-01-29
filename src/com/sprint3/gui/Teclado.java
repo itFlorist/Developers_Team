@@ -7,14 +7,14 @@ import java.util.Scanner;
 /*Clase para manejar la entrada de datos de teclado*/
 public class Teclado {
 
-    private static final Scanner lectura = new Scanner(System.in);
+    private final Scanner lectura = new Scanner(System.in);
 
     /** 
      * Este método se encarga de leer un String de teclado
      * @param mensaje
      * @return String
      */
-    public static String leerString(String mensaje) {
+    public String leerString(String mensaje) {
         String cadena = "";
         boolean correcto = false;
 
@@ -35,7 +35,7 @@ public class Teclado {
       * @param mensaje
       * @return float
       */
-    public static float leerFloat(String mensaje) {
+    public float leerFloat(String mensaje) {
         float numero = 0.0f;
         boolean correcto = false;
 
@@ -57,7 +57,7 @@ public class Teclado {
       * @param mensaje
       * @return double
       */
-    public static double leerDouble(String mensaje) {
+    public double leerDouble(String mensaje) {
         double numero = 0.0;
         boolean correcto = false;
 
@@ -79,7 +79,7 @@ public class Teclado {
       * @param mensaje
       * @return int
       */
-    public static int leerInt(String mensaje) {
+    public int leerInt(String mensaje) {
         int numero = 0;
         boolean correcto = false;
 
@@ -96,7 +96,7 @@ public class Teclado {
         return numero;
     }
     //añadido para poder introducir máximo y mínimo.
-    public static int leerInt(String mensaje, int min, int max) {
+    public int leerInt(String mensaje, int min, int max) {
     	int numero;
         do {
             numero = leerInt(mensaje);
@@ -110,7 +110,7 @@ public class Teclado {
      * @param mensaje
      * @return byte
      */
-    public static byte leerByte(String mensaje) {
+    public byte leerByte(String mensaje) {
         byte numero = 0;
         boolean correcto = false;
 
@@ -132,7 +132,7 @@ public class Teclado {
       * @param mensaje 
       * @return char
       */
-    public static char leerChar(String mensaje) {
+    public char leerChar(String mensaje) {
         char caracter = 0;
         boolean correcto = false;
 
@@ -156,7 +156,7 @@ public class Teclado {
      * @param mensaje
      * @return boolean
      */
-    public static boolean leerSiNo(String mensaje) {
+    public boolean leerSiNo(String mensaje) {
         boolean retorno = false;
         boolean correcto = false;
         String cadena = "";
@@ -181,7 +181,7 @@ public class Teclado {
         return retorno;
     }
     //añadido para hacer print
-    public static void print(String mensaje) {
+    public void print(String mensaje) {
     	System.out.println(mensaje);
     }
 }
