@@ -4,15 +4,22 @@ package com.sprint3.dao;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.sprint3.dto.Decoration;
 import com.sprint3.dto.Florist;
+import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
 
-public class FloristDaoImpl {
+public class FloristDaoImpl implements FloristDao{
 
 /*	
   	private void showFloristValue(List<Product> stock) {}
@@ -32,40 +39,77 @@ public class FloristDaoImpl {
     	FLORIST_FILE = "DvdLibrary.txt";
     }
 
-	public Product addTree(int id, Tree tree) {
-		loadFlorist();
-		Product newTree = stock.put(id, tree);
-		writeFlorist();
-		return newTree;
-	}
-
-	// FILE PERSISTENCE
-
-	private void loadFlorist() {
-		Scanner scanner;
-		try {
-			scanner = new Scanner(new BufferedReader(new FileReader(FLORIST_FILE)));
-		} catch (Exception e) {
-			System.out.println("File does not exist");
-		}
-		String currentLine;
-		Tree currentTree;
-		while (scanner.hasNextLine()) {
-			currentLine = scanner.nextLine();
-			currentTree = unmarshallTree(currentLine);
-			stock.put(currentTree.getId(), currentTree);
-		}
-		scanner.close();
-
-	}
+//	public Product addTree(int id, Tree tree) {
+//		loadFlorist();
+//		Product newTree = stock.put(id, tree);
+//		writeFlorist();
+//		return newTree;
+//	}
+//
+//	// FILE PERSISTENCE
+//
+//	private void loadFlorist() {
+//		Scanner scanner;
+//		try {
+//			scanner = new Scanner(new BufferedReader(new FileReader(FLORIST_FILE)));
+//		} catch (Exception e) {
+//			System.out.println("File does not exist");
+//		}
+//		String currentLine;
+//		Tree currentTree;
+//		while (scanner.hasNextLine()) {
+//			currentLine = scanner.nextLine();
+//			currentTree = unmarshallTree(currentLine);
+//			stock.put(currentTree.getId(), currentTree);
+//		}
+//		scanner.close();
+//
+//	}
 	
-    public Product removeProduct(int id) {
+    public Product removeProduct(int id) throws FloristDaoException {
         loadStock();
-        Product removedProduct = products.remove(id);
+        Product removedProduct = stock.remove(id);
         writeStock();
         return removedProduct;
     }
+    
+    public List<Product> getAllProducts() throws FloristDaoException{
+        loadStock();
+        return new ArrayList(stock.values());
+    }
 
+    
+    //FILE PERSISTENCE
+    // Data Marshalling & Unmarshalling
+    /**
+     * marshallProduct organises the Product information from an in memory object into a
+     * line of text, so it is in an appropriate format for writing it to permanent storage.
+     * @param aProduct a Product object in memory 
+     * @return a String consisting of the format Project id::name::price::class::height::color::material 
+     */
+    private String marshallProduct(Product aProduct) {
+        //A Project object needs to be turned into a line of text for the file.
+        //E.g, need to turn an in memory object to end up like this:
+        //00001::Orchid::21.95::Flower::NULL::White::NULL
+        
+        //the properties are got out of the Project object using getters and these are
+        //concatenated with the delimiter as a kind of spacer.
+    	
+    	/*
+    	 * 
+    	 * VIGILAR CON LOS NULLS DE LOS ATRIBUTOS NO INCLUIDOS EN LOS OBJETOS
+    	 * 
+    	 */
+    	
+        String productAsText = aProduct.getId() + DELIMITER;
+        productAsText += aProduct.getName() + DELIMITER;
+        productAsText += aProduct.getPrice() + DELIMITER;
+        productAsText += aProduct.getClass().getSimpleName() + DELIMITER;
+        productAsText += aProduct.getHeight() + DELIMITER;
+        productAsText += aProduct.getColor() + DELIMITER;
+        productAsText += aProduct.getMaterial();
+        return productAsText;
+    }
     
     private Product unmarshallProduct(String productAsText) {
         //productAsText is expecting a line read in from our file.
@@ -83,7 +127,6 @@ public class FloristDaoImpl {
         //  [0]   [1]    [2]   [3]   [4]   [5]   [6]
         
         String [] productTokens = productAsText.split(DELIMITER);
-        //Given the pattern above, the DVD title is in index 0 of the array.
         String idString = productTokens[0];
         String name = productTokens[1];
         String price = productTokens[2];
@@ -95,20 +138,37 @@ public class FloristDaoImpl {
         //A new Project object is created using the id to satisfy the 
         //requirements of the Project constructor
         int id = Integer.parseInt(idString);
-        Product productFromFile = new Product(id);
+        Product productFromFile = null; //= new Product(id);
+
+        
+        switch(type) {
+        	case "Tree":
+        		//productFromFile = new Tree(id, name, Float.parseFloat(price), Float.parseFloat(height));
+        		productFromFile = new Tree(Float.parseFloat(height));
+        		break;
+        	case "Flower":
+        		//productFromFile = new Flower(id, name, Float.parseFloat(price), color);
+        		productFromFile = new Flower(color);
+        		break;
+        	case "Decoration":
+        		productFromFile = new Decoration(material);
+        		break;
+        }
+        
         //The remaining tokens are then set into the DVD object using the appropriate setters.
+        productFromFile.setId(id);
         productFromFile.setName(name);
         productFromFile.setPrice(Float.parseFloat(price));
-        productFromFile.setType(type);
-        productFromFile.setHeight(height);
-        productFromFile.setColor(color);
-        productFromFile.setMaterial(material);
+//        productFromFile.setType(type);
+//        productFromFile.setHeight(height);
+//        productFromFile.setColor(color);
+//        productFromFile.setMaterial(material);
         
         return productFromFile;
     }
     
     
-	private void loadStock() {
+	private void loadStock() throws FloristDaoException {
 		Scanner scanner;
         try {
             // Create Scanner for reading the file
@@ -122,7 +182,7 @@ public class FloristDaoImpl {
         //currentLine holds the most recent line read from the file
         String currentLine;
         //curentDvd holds the most recent DVD unmarshalled
-        Florist currentFlorist;
+        Product currentProduct;
         //Go through LIBRARY_FILE line by line, decoding each line into a DVD
         //object by calling the unmarshallDvd method. Process while we have more
         //more lines in the file
@@ -130,13 +190,38 @@ public class FloristDaoImpl {
             //get the next line in the file
             currentLine = scanner.nextLine();
             //unmarshall the line into a DVD
-            currentFlorist = unmarshallDvd(currentLine);
+            currentProduct = unmarshallProduct(currentLine);
             
-            //The Dvd title is used as a map key to put the currentDvd ino the map
-            dvds.put(currentDvd.getTitle(),currentDvd);
+            //The Product id is used as a map key to put the currentProduct into the map
+            stock.put(currentProduct.getId(),currentProduct);
         }
         //Clean up
         scanner.close();
 	}
+	
+    private void writeStock() throws FloristDaoException {
+    // We are translating the IOException to an application specific exception
+    //and then simple throwing it i.e. reporting it to the code that called us.
+    
+    PrintWriter out;
+    
+    try {
+        out = new PrintWriter(new FileWriter(FLORIST_FILE));
+    } catch (IOException e) {
+        throw new FloristDaoException("Could not save DVD data",e);
+    }
+    String productAsText;
+    List <Product> productList = this.getAllProducts();
+    for (Product currentProduct : productList) {
+        //turn a DVD into a string
+    	productAsText = marshallProduct(currentProduct);
+        //write the DVD object to to the file;
+        out.println(productAsText);
+        //force PrintWriter to write line to the file
+        out.flush();
+    }
+    //Clean up
+    out.close();
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.sprint3.gui;
 
+import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
 
 public class FloristView {
@@ -47,7 +48,7 @@ public class FloristView {
 		io.print("7. Display total income.");
 		io.print("0. Exit.\n");
 
-		return io.leerInt("Please select one choice.", 1, 7);
+		return io.leerInt("Please select one choice.", 0, 7);
 
 
 	}
@@ -88,7 +89,16 @@ public class FloristView {
 		return io.leerInt("Please enter Product Id");
 	}
 
+	public void displayRemoveResult(Product productRecord) {        
+		if (productRecord != null) {
+        io.print("Product successfully removed.");
+		} else {
+			io.print("No such Product.");
+		}
+		io.leerString("Please hit enter to continue.");
+	}
 
+	
 }
 
 //	public static void showMenuPrincipal() {

@@ -96,7 +96,7 @@ public class FloristController {
 		floristView.displayRemoveProductBanner();
         int id = floristView.getProductIdChoice();
         Product removedProduct = floristDao.removeProduct(id);
-        floristView.displayRemoveResult(removedDvd);
+        floristView.displayRemoveResult(removedProduct);
 	}
 
 	private void showFloristStock() {

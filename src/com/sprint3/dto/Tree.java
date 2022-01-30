@@ -3,6 +3,11 @@ package com.sprint3.dto;
 public class Tree extends Product {
 
 	private float height;
+	
+	public Tree(float height) {
+		super();
+		this.height = height;
+	}
 
 	public Tree(int id, String name, float price, float height) {
 		super(id, name, price);
@@ -22,9 +27,14 @@ public class Tree extends Product {
 		return "Tree [height=" + height + "]";
 	}
 
-	@Override
-	void toDo() {
-		// TODO Auto-generated method stub
 
+	@Override
+	public String getMaterial() {
+		return null;
+	}
+
+	@Override
+	public String getFlowerColour() {
+		return null;
 	}
 }

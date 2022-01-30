@@ -1,7 +1,7 @@
 package com.sprint3.dto;
 
 
-public class Product {
+public abstract class Product {
 
 	private static int id;
 	private String name;
@@ -48,5 +48,10 @@ public class Product {
 		this.price = price;
 	}
 
-	abstract void toDo();
+
+	public abstract float getHeight();
+
+	public abstract String getFlowerColour();
+
+	public abstract String getMaterial();
 }
