@@ -4,12 +4,18 @@ public class Flower extends Product {
 
 	private String colour;
 
+
 	public Flower(String colour) {
 		super();
 		this.colour = colour;
 	}
+
+	public Flower(int id, String name, float price, String colour) {
+		super(id, name, price);
+		this.colour = colour;
+	}
 	
-	
+	@Override
 	public String getFlowerColour() {
 		return colour;
 	}
@@ -23,9 +29,14 @@ public class Flower extends Product {
 		return "Flower [colour=" + colour + "]";
 	}
 
+
+
 	@Override
-	void toDo() {
-		// TODO Auto-generated method stub
-		
+	public float getHeight() {
+		return 0;
+	}
+	@Override
+	public String getMaterial() {
+		return null;
 	}
 }
