@@ -1,6 +1,7 @@
 package com.sprint3.controller;
 
 import com.sprint3.dao.FloristDao;
+import com.sprint3.dao.FloristDaoException;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
 import com.sprint3.gui.FloristView;
@@ -92,7 +93,7 @@ public class FloristController {
 		floristView.displayCreateSuccessBanner();
 	}
 	
-	private void removeProduct() {
+	private void removeProduct()throws FloristDaoException{
 		floristView.displayRemoveProductBanner();
         int id = floristView.getProductIdChoice();
         Product removedProduct = floristDao.removeProduct(id);

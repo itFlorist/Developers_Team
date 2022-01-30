@@ -106,7 +106,7 @@ public class FloristDaoImpl implements FloristDao{
         productAsText += aProduct.getPrice() + DELIMITER;
         productAsText += aProduct.getClass().getSimpleName() + DELIMITER;
         productAsText += aProduct.getHeight() + DELIMITER;
-        productAsText += aProduct.getColor() + DELIMITER;
+        productAsText += aProduct.getFlowerColour() + DELIMITER;
         productAsText += aProduct.getMaterial();
         return productAsText;
     }
@@ -155,7 +155,7 @@ public class FloristDaoImpl implements FloristDao{
         		break;
         }
         
-        //The remaining tokens are then set into the DVD object using the appropriate setters.
+        //The remaining tokens are then set into the Product object using the appropriate setters.
         productFromFile.setId(id);
         productFromFile.setName(name);
         productFromFile.setPrice(Float.parseFloat(price));
@@ -183,13 +183,13 @@ public class FloristDaoImpl implements FloristDao{
         String currentLine;
         //curentDvd holds the most recent DVD unmarshalled
         Product currentProduct;
-        //Go through LIBRARY_FILE line by line, decoding each line into a DVD
-        //object by calling the unmarshallDvd method. Process while we have more
+        //Go through LIBRARY_FILE line by line, decoding each line into a Product
+        //object by calling the unmarshallProduct method. Process while we have more
         //more lines in the file
         while (scanner.hasNextLine()) {
             //get the next line in the file
             currentLine = scanner.nextLine();
-            //unmarshall the line into a DVD
+            //unmarshall the line into a Product
             currentProduct = unmarshallProduct(currentLine);
             
             //The Product id is used as a map key to put the currentProduct into the map
@@ -208,14 +208,14 @@ public class FloristDaoImpl implements FloristDao{
     try {
         out = new PrintWriter(new FileWriter(FLORIST_FILE));
     } catch (IOException e) {
-        throw new FloristDaoException("Could not save DVD data",e);
+        throw new FloristDaoException("Could not save Product data",e);
     }
     String productAsText;
     List <Product> productList = this.getAllProducts();
     for (Product currentProduct : productList) {
-        //turn a DVD into a string
+        //turn a Product into a string
     	productAsText = marshallProduct(currentProduct);
-        //write the DVD object to to the file;
+        //write the Product object to to the file;
         out.println(productAsText);
         //force PrintWriter to write line to the file
         out.flush();
