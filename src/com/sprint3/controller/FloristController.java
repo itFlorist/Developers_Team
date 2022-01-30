@@ -1,27 +1,21 @@
 package com.sprint3.controller;
 
-import java.util.List;
-
 import com.sprint3.dao.FloristDao;
-
+import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
-
-import com.sprint3.dto.Florist;
-
 import com.sprint3.gui.FloristView;
 
 public class FloristController {
 
-	private static FloristView floristView;
+	private FloristView floristView;
 	private FloristDao floristDao;
-	private static List<Product> stock;
 
 	public FloristController(FloristView floristView, FloristDao floristDao) {
 		this.floristView = floristView;
 		this.floristDao = floristDao;
 	}
 
-	public static void runProduct() {
+	public void runProduct() {
 
 		boolean keepGoing = true;
 		int choice = 0;
@@ -32,25 +26,25 @@ public class FloristController {
 
 				switch (choice) {
 				case 1:
-					add(stock);
+					add();
 					break;
 				case 2:
-					delete(stock);
+					delete();
 					break;
 				case 3:
-					showFloristStock(stock);
+					showFloristStock();
 					break;
 				case 4:
-					showFloristValue(stock);
+					showFloristValue();
 					break;
 				case 5:
-					showCurrentPurchaseReceipt(stock);
+					showCurrentPurchaseReceipt();
 					break;
 				case 6:
-					showOldPurchaseReceipts(stock);
+					showOldPurchaseReceipts();
 					break;
 				case 7:
-					totalIncome(stock);
+					totalIncome();
 					break;
 				case 0:
 					keepGoing = false;
@@ -61,51 +55,12 @@ public class FloristController {
 			}
 
 		} catch (Exception e) {
-			productView.displayErrorMessage(e.getMessage());
+			floristView.displayErrorMessage(e.getMessage());
+
 		}
 	}
 
-	private static void add() {
-
-	}
-
-	private static void delete() {
-
-	}
-
-	private static void showFloristStock() {
-		
-		//Oliver
-
-	}
-
-	private static void showFloristValue() {
-
-	}
-
-	private static void showCurrentPurchaseReceipt() {
-
-	}
-
-	private static void showOldPurchaseReceipts() {
-		
-		//Oliver
-
-	}
-
-	private static void totalIncome() {
-
-	}
-
-	private static int getMenuProduct() {
-		return floristView.menuProduct();
-	}
-
-	private static void unknownCommand() {
-		floristView.displayUnknownCommandBanner();
-	}
-
-	private void addProduct() {
+	private void add() {
 		boolean keepGoing = true;
 		int menuSelection;
 		while (keepGoing) {
@@ -113,7 +68,7 @@ public class FloristController {
 
 			switch (menuSelection) {
 			case 1:
-				addTree();
+				addProduct(new Tree());
 				break;
 			case 2:
 				// addFlower();
@@ -129,12 +84,11 @@ public class FloristController {
 			}
 		}
 		// exitMessage();
-
 	}
 
-	private void addTree() {
+	private void addProduct(Product product) {
 		floristView.displayCreateTreeBanner();
-		Tree newTree = floristView.getNewTreeInfo();
+		newTree = floristView.getNewTreeInfo();
 		floristDao.addTree(newTree.getId(), newTree);
 		floristView.displayCreateSuccessBanner();
 
@@ -144,7 +98,40 @@ public class FloristController {
 		return floristView.printAddMenuAndGetSelection();
 	}
 
+	private void delete() {
+
+	}
+
+	private void showFloristStock() {
+
+		// Oliver
+
+	}
+
+	private void showFloristValue() {
+
+	}
+
+	private void showCurrentPurchaseReceipt() {
+
+	}
+
+	private void showOldPurchaseReceipts() {
+
+		// Oliver
+
+	}
+
+	private void totalIncome() {
+
+	}
+
+	private int getMenuProduct() {
+		return floristView.menuProduct();
+	}
+
 	private void unknownCommand() {
 		floristView.displayUnknownCommandBanner();
 	}
+
 }
