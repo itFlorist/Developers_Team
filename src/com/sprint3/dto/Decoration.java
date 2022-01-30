@@ -19,9 +19,15 @@ public class Decoration extends Product {
 		return "Decoration [material=" + material + "]";
 	}
 
+
 	@Override
-	void toDo() {
-		// TODO Auto-generated method stub
-		
+	public float getHeight() {
+		return 0;
 	}
+	@Override
+	public String getFlowerColour() {
+		return null;
+	}
+
+
 }

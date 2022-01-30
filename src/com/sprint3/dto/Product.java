@@ -1,7 +1,5 @@
 package com.sprint3.dto;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Product {
 
@@ -9,11 +7,14 @@ public abstract class Product {
 	private String name;
 	private float price;
 
-	public Product() {
+	public Product() {}
+	
+	public Product(int id) {
+		//this.id = Product.id++;
+		this.id = id;
 	}
 
 	public Product(int id, String name, float price) {
-		super();
 		this.id = Product.id++;
 		this.name = name;
 		this.price = price;
@@ -43,7 +44,12 @@ public abstract class Product {
 		this.price = price;
 	}
 
-	abstract void toDo();
+	//public abstract Product getStock();
 
-	public abstract Product getStock();
+	public abstract float getHeight();
+
+	public abstract String getFlowerColour();
+
+	public abstract String getMaterial();
+
 }

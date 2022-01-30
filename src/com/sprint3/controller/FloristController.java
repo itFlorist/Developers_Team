@@ -1,14 +1,14 @@
 package com.sprint3.controller;
 
-import java.util.List;
-
 import com.sprint3.dao.FloristDao;
 import com.sprint3.dto.Tree;
 import com.sprint3.dto.Florist;
 import com.sprint3.dto.Product;
 import com.sprint3.gui.FloristView;
+import com.sprint3.dao.FloristDaoException;
 
 public class FloristController {
+	
 
 	private FloristView floristView;
 	private FloristDao floristDao;
@@ -29,10 +29,10 @@ public class FloristController {
 
 				switch (choice) {
 				case 1:
-					add();
+          addProduct();
 					break;
-				case 2:
-					delete();
+        case 2:
+					removeProduct();
 					break;
 				case 3:
 					showFloristStock();
@@ -63,50 +63,6 @@ public class FloristController {
 		}
 	}
 
-	
-
-	private void add() {
-
-	}
-
-	private void delete() {
-
-	}
-
-	private void showFloristStock() { // Oliver
-
-		floristView.displayStockBanner();
-		List<Product> stock = floristDao.getAllStock();
-		floristView.displayFloristStock(stock);
-
-	}
-
-	private void showFloristValue() {
-
-	}
-
-	private void showCurrentPurchaseReceipt() {
-
-	}
-
-	private void showOldPurchaseReceipts() {
-
-		// Oliver
-
-	}
-
-	private void totalIncome() {
-
-	}
-
-	private int getMenuProduct() {
-		return floristView.menuProduct();
-	}
-
-	private void unknownCommand() {
-		floristView.displayUnknownCommandBanner();
-	}
-
 	private void addProduct() {
 		boolean keepGoing = true;
 		int menuSelection;
@@ -131,23 +87,60 @@ public class FloristController {
 			}
 		}
 		// exitMessage();
-
 	}
-
+	
 	private void addTree() {
 		floristView.displayCreateTreeBanner();
 		Tree newTree = floristView.getNewTreeInfo();
 		floristDao.addTree(newTree.getId(), newTree);
 		floristView.displayCreateSuccessBanner();
+	}
+	
+	private void removeProduct()throws FloristDaoException{
+		floristView.displayRemoveProductBanner();
+        int id = floristView.getProductIdChoice();
+        Product removedProduct = floristDao.removeProduct(id);
+        floristView.displayRemoveResult(removedProduct);
+	}
+
+	private void showFloristStock() { // Oliver
+
+		floristView.displayStockBanner();
+		List<Product> stock = floristDao.getAllStock();
+		floristView.displayFloristStock(stock);
+
+	}
+  
+	private void showFloristValue() {
 
 	}
 
-	private int getAddMenuSelection() {
-		return floristView.printAddMenuAndGetSelection();
+	private void showCurrentPurchaseReceipt() {
+
+	}
+
+	private void showOldPurchaseReceipts() {
+		
+		//Oliver
+
+	}
+
+	private void totalIncome() {
+
+	}
+
+	private int getMenuProduct() {
+		return floristView.menuProduct();
 	}
 
 	private void exitMessage() {
 		floristView.displayExitBanner();
 		
 	}
+
+
+	private int getAddMenuSelection() {
+		return floristView.printAddMenuAndGetSelection();
+	}
+
 }
