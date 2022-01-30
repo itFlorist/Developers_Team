@@ -59,23 +59,19 @@ public class FloristDaoImpl implements FloristDao {
 
 	}
 
+	public List<Product> getAllStock(List<Product> stock) {
 
+		// loadFlorist();
 
-	@Override
-	public List<Product> getAllStock(stock) {
-		
-		//loadFlorist();
-		
 		for (Product product : stock) {
 			if (product.getType().equals("Tree")) {
 				int treeStock = stock.size();
-			} else if (product.equals(Flower)) {
+			} else if (product.equals("Flower")) {
 				int flowerStock = stock.size();
-			} else if (product.equals(Decoration)) {
+			} else if (product.equals("Decoration")) {
 				int decorationStock = stock.size();
 			}
 		}
-		return null;
+		return stock;
 	}
-
 }
