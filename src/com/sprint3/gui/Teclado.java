@@ -7,7 +7,7 @@ import java.util.Scanner;
 /*Clase para manejar la entrada de datos de teclado*/
 public class Teclado {
 
-	final private Scanner lectura = new Scanner(System.in);
+    private final Scanner lectura = new Scanner(System.in);
 
     /** 
      * Este método se encarga de leer un String de teclado

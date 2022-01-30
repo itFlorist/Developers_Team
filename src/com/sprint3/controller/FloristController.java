@@ -1,13 +1,15 @@
 package com.sprint3.controller;
 
 import com.sprint3.dao.FloristDao;
-import com.sprint3.dao.FloristDaoException;
-import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
+import com.sprint3.dto.Florist;
+import com.sprint3.dto.Product;
 import com.sprint3.gui.FloristView;
+import com.sprint3.dao.FloristDaoException;
 
 public class FloristController {
 	
+
 	private FloristView floristView;
 	private FloristDao floristDao;
 
@@ -27,9 +29,9 @@ public class FloristController {
 
 				switch (choice) {
 				case 1:
-					addProduct();
+          addProduct();
 					break;
-				case 2:
+        case 2:
 					removeProduct();
 					break;
 				case 3:
@@ -54,6 +56,7 @@ public class FloristController {
 					unknownCommand();
 				}
 			}
+			exitMessage();
 
 		} catch (Exception e) {
 			floristView.displayErrorMessage(e.getMessage());
@@ -100,12 +103,14 @@ public class FloristController {
         floristView.displayRemoveResult(removedProduct);
 	}
 
-	private void showFloristStock() {
-		
-		//Oliver
+	private void showFloristStock() { // Oliver
+
+		floristView.displayStockBanner();
+		List<Product> stock = floristDao.getAllStock();
+		floristView.displayFloristStock(stock);
 
 	}
-
+  
 	private void showFloristValue() {
 
 	}
@@ -128,8 +133,9 @@ public class FloristController {
 		return floristView.menuProduct();
 	}
 
-	private void unknownCommand() {
-		floristView.displayUnknownCommandBanner();
+	private void exitMessage() {
+		floristView.displayExitBanner();
+		
 	}
 
 

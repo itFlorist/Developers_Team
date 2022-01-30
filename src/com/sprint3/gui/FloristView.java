@@ -1,5 +1,7 @@
 package com.sprint3.gui;
 
+import java.util.List;
+import com.sprint3.dto.Florist;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
 
@@ -14,7 +16,7 @@ public class FloristView {
 	public FloristView(Teclado io) {
 		this.io = io;
 	}
-
+  
 /*
 	// Method that prints on console the AddMenu and gets a selection from the user.
 	public int printAddMenuAndGetSelection() {
@@ -30,9 +32,10 @@ public class FloristView {
 		System.out.println("************************************************");
 		System.out.println(" ");
 		System.out.print(">> ");
-		
-		//return io.leerInt("Please select one option from the above.");
 
+		return io.leerInt("Please select one option from the above.");
+
+	}
 	}
 */
 		
@@ -50,7 +53,6 @@ public class FloristView {
 
 		return io.leerInt("Please select one choice.", 0, 7);
 
-
 	}
 
 	public void displayErrorMessage(String errorMsg) {
@@ -59,7 +61,6 @@ public class FloristView {
 	}
 
 	public void displayUnknownCommandBanner() {
-
 		io.print("Unknown command!");
 	}
 
@@ -81,6 +82,30 @@ public class FloristView {
 		return currentTree;
 	}
 
+	public void displayStockBanner() {
+		System.out.println("=== Stock ===");
+	}
+
+	public void displayFloristStock(List<Product> stock) {
+		String stockHeadings = String.format("%-25s | %10s", "Florist´s name", "Stock");
+		io.print(stockHeadings);
+		io.print(
+				"-----------------------------------------------------------------------------------------------------------------");
+		for (Product florist : stock) {
+			String floristStock = String.format("%-25s | %10s", florist.getName(), florist.getStock());
+			io.print(floristStock);
+		}
+		io.leerString("Please hit enter to continue");
+	}
+
+	public void displayOldPurchasesBanner() {
+		System.out.println("=== Old Purchases ===");
+	}
+
+	public void displayExitBanner() {
+		io.print("Bye bye!");
+  }
+  
 	public void displayRemoveProductBanner() {
 		io.print("-- Delete Product --");
 	}
@@ -97,7 +122,6 @@ public class FloristView {
 		}
 		io.leerString("Please hit enter to continue.");
 	}
-
 	
 }
 

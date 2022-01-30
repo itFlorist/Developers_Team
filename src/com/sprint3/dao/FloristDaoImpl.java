@@ -1,6 +1,5 @@
 package com.sprint3.dao;
 
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
 import com.sprint3.dto.Decoration;
 import com.sprint3.dto.Florist;
 import com.sprint3.dto.Flower;
@@ -36,7 +34,7 @@ public class FloristDaoImpl implements FloristDao{
 	
     
     public FloristDaoImpl() {
-    	FLORIST_FILE = "DvdLibrary.txt";
+    	FLORIST_FILE = "florist.txt";
     }
 
 //	public Product addTree(int id, Tree tree) {
@@ -224,4 +222,19 @@ public class FloristDaoImpl implements FloristDao{
     out.close();
     }
 
+	public List<Product> getAllStock(List<Product> stock) {
+
+		// loadFlorist();
+
+		for (Product product : stock) {
+			if (product.getType().equals("Tree")) {
+				int treeStock = stock.size();
+			} else if (product.equals("Flower")) {
+				int flowerStock = stock.size();
+			} else if (product.equals("Decoration")) {
+				int decorationStock = stock.size();
+			}
+		}
+		return stock;
+	}
 }

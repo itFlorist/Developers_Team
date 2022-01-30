@@ -7,16 +7,12 @@ public abstract class Product {
 	private String name;
 	private float price;
 
-
-	
 	public Product() {}
-	
 	
 	public Product(int id) {
 		//this.id = Product.id++;
 		this.id = id;
 	}
-	
 
 	public Product(int id, String name, float price) {
 		this.id = Product.id++;
@@ -48,10 +44,12 @@ public abstract class Product {
 		this.price = price;
 	}
 
+	//public abstract Product getStock();
 
 	public abstract float getHeight();
 
 	public abstract String getFlowerColour();
 
 	public abstract String getMaterial();
+
 }
