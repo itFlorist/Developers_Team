@@ -1,0 +1,8 @@
+14::dffe::5.0::Tree::2.0::null::null
+14::silla::60.0::Decoration::0.0::null::marron
+14::casagrande::60.0::Decoration::0.0::null::marron
+14::case::60.0::Decoration::0.0::null::marron
+14::vaso::60.0::Decoration::0.0::null::marron
+14::arbol::5.0::Tree::3.0::null::null
+14::elefante::60.0::Decoration::0.0::null::azul
+14::mesa::60.0::Decoration::0.0::null::rosa
