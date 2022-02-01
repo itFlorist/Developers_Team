@@ -1,0 +1,5 @@
+Product
+	-constructor
+	-atributo id
+
+Delete OK

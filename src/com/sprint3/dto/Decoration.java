@@ -8,19 +8,19 @@ public class Decoration extends Product {
 		super();
 		this.material = material;
 	}
-
+	
 	public Decoration(int id, String name, float price, String material) {
 		super(id, name, price);
 		this.material = material;
 	}
 
-	public String getMaterial() {
-		return material;
+	@Override
+	public String getMaterial() { 
+		return material; 
 	}
-
-	public void setMaterial(String material) {
-		this.material = material;
-	}
+	public void setMaterial(String material) { 
+		this.material = material; 
+		}
 
 	@Override
 	public String toString() {

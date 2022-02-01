@@ -1,5 +1,6 @@
 package com.sprint3.controller;
 
+import java.util.List;
 import com.sprint3.dao.FloristDao;
 import com.sprint3.dao.FloristDaoException;
 import com.sprint3.dto.Product;
@@ -50,7 +51,7 @@ public class FloristController {
 					keepGoing = false;
 					break;
 				default:
-					unknownCommand();
+					//unknownCommand();
 				}
 			}
 			exitMessage();
@@ -59,8 +60,8 @@ public class FloristController {
 			floristView.displayErrorMessage(e.getMessage());
 		}
 	}
-
-	private void addProductSelection() throws FloristDaoException {
+	
+  private void addProductSelection() throws FloristDaoException {
 		boolean keepGoing = true;
 		int menuSelection;
 		while (keepGoing) {
@@ -83,21 +84,21 @@ public class FloristController {
 				unknownCommand();
 			}
 		}
-		// exitMessage(); opcional???
 	}
-
+  
 	private void addProduct(String product) throws FloristDaoException {
 		floristView.displayCreateProductBanner(product);
 		Product newProduct = floristView.getNewProductInfo(product);
 		floristDao.addProductType(newProduct.getId(), newProduct);
 		floristView.displayCreateSuccessBanner(product);
 	}
-
-	private void removeProduct() throws FloristDaoException {
+	
+	private void removeProduct() throws FloristDaoException{
 		floristView.displayRemoveProductBanner();
-		int id = floristView.getProductIdChoice();
-		Product removedProduct = floristDao.removeProduct(id);
-		floristView.displayRemoveResult(removedProduct);
+        int id = floristView.getProductIdChoice();
+        Product removedProduct = floristDao.removeProduct(id);
+        System.out.println(removedProduct);
+        floristView.displayRemoveResult(removedProduct);
 	}
 
 //	private void showFloristStock() { // Oliver
@@ -138,9 +139,4 @@ public class FloristController {
 		floristView.displayExitBanner();
 
 	}
-
-	private int getAddMenuSelection() {
-		return floristView.printAddMenuAndGetSelection();
-	}
-
 }
