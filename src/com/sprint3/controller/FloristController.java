@@ -1,5 +1,6 @@
 package com.sprint3.controller;
 
+import java.util.List;
 import com.sprint3.dao.FloristDao;
 import com.sprint3.dto.Tree;
 import com.sprint3.dto.Florist;
@@ -29,13 +30,13 @@ public class FloristController {
 
 				switch (choice) {
 				case 1:
-          addProduct();
+					addProduct();
 					break;
-        case 2:
+				case 2:
 					removeProduct();
 					break;
 				case 3:
-					showFloristStock();
+					//showFloristStock();
 					break;
 				case 4:
 					showFloristValue();
@@ -53,7 +54,7 @@ public class FloristController {
 					keepGoing = false;
 					break;
 				default:
-					unknownCommand();
+					//unknownCommand();
 				}
 			}
 			exitMessage();
@@ -63,53 +64,61 @@ public class FloristController {
 		}
 	}
 
-	private void addProduct() {
-		boolean keepGoing = true;
-		int menuSelection;
-		while (keepGoing) {
-			menuSelection = getAddMenuSelection();
-
-			switch (menuSelection) {
-			case 1:
-				addTree();
-				break;
-			case 2:
-				// addFlower();
-				break;
-			case 3:
-				// addDecoration();
-				break;
-			case 0:
-				// back to principal menu
-				break;
-			default:
-				unknownCommand();
-			}
-		}
+//	private void addProduct() {
+//		boolean keepGoing = true;
+//		int menuSelection;
+//		while (keepGoing) {
+//			menuSelection = getAddMenuSelection();
+//
+//			switch (menuSelection) {
+//			case 1:
+//				addTree();
+//				break;
+//			case 2:
+//				// addFlower();
+//				break;
+//			case 3:
+//				// addDecoration();
+//				break;
+//			case 0:
+//				// back to principal menu
+//				break;
+//			default:
+//				unknownCommand();
+//			}
+//		}
 		// exitMessage();
+//	}
+	
+//	private void addTree() {
+//		floristView.displayCreateTreeBanner();
+//		Tree newTree = floristView.getNewTreeInfo();
+//		floristDao.addTree(newTree.getId(), newTree);
+//		floristView.displayCreateSuccessBanner();
+//	}
+	
+	private void addProduct() throws FloristDaoException {
+		System.out.println("Create Product");
+		Product newProduct = floristView.getNewProductInfo();
+		floristDao.addProduct(newProduct.getId(),newProduct);
+		System.out.println("Process completed succesfully!");
 	}
 	
-	private void addTree() {
-		floristView.displayCreateTreeBanner();
-		Tree newTree = floristView.getNewTreeInfo();
-		floristDao.addTree(newTree.getId(), newTree);
-		floristView.displayCreateSuccessBanner();
-	}
-	
-	private void removeProduct()throws FloristDaoException{
+	private void removeProduct() throws FloristDaoException{
 		floristView.displayRemoveProductBanner();
         int id = floristView.getProductIdChoice();
         Product removedProduct = floristDao.removeProduct(id);
+        System.out.println(removedProduct);
         floristView.displayRemoveResult(removedProduct);
 	}
 
-	private void showFloristStock() { // Oliver
-
-		floristView.displayStockBanner();
-		List<Product> stock = floristDao.getAllStock();
-		floristView.displayFloristStock(stock);
-
-	}
+//	private void showFloristStock() { // Oliver
+//
+//		floristView.displayStockBanner();
+//		List<Product> stock = floristDao.getAllStock();
+//		floristView.displayFloristStock(stock);
+//
+//	}
   
 	private void showFloristValue() {
 
@@ -139,8 +148,8 @@ public class FloristController {
 	}
 
 
-	private int getAddMenuSelection() {
-		return floristView.printAddMenuAndGetSelection();
-	}
+//	private int getAddMenuSelection() {
+//		return floristView.printAddMenuAndGetSelection();
+//	}
 
 }

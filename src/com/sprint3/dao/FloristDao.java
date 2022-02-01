@@ -5,7 +5,9 @@ import com.sprint3.dto.Product;
 
 public interface FloristDao {
 
-	List<Product> getAllStock();	
+	 public Product addProduct(int id, Product product) throws FloristDaoException;
+	
+	List<Product> getAllStock(List<Product> stock);	
 
 	Product removeProduct(int id) throws FloristDaoException;
 	

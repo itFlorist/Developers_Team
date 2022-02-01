@@ -3,7 +3,7 @@ package com.sprint3.dto;
 
 public abstract class Product {
 
-	private static int id;
+	private int id;
 	private String name;
 	private float price;
 
@@ -15,7 +15,7 @@ public abstract class Product {
 	}
 
 	public Product(int id, String name, float price) {
-		this.id = Product.id++;
+		this.id = id;
 		this.name = name;
 		this.price = price;
 	}

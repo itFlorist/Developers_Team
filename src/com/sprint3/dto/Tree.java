@@ -13,11 +13,10 @@ public class Tree extends Product {
 		super(id, name, price);
 		this.height = height;
 	}
-
+	@Override
 	public float getHeight() {
 		return height;
 	}
-
 	public void setHeight(float height) {
 		this.height = height;
 	}
@@ -27,14 +26,13 @@ public class Tree extends Product {
 		return "Tree [height=" + height + "]";
 	}
 
-
+	@Override
+	public String getFlowerColour() {
+		return null;
+	}
 	@Override
 	public String getMaterial() {
 		return null;
 	}
 
-	@Override
-	public String getFlowerColour() {
-		return null;
-	}
 }

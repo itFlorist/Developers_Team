@@ -1,7 +1,10 @@
 package com.sprint3.gui;
 
 import java.util.List;
+
+import com.sprint3.dto.Decoration;
 import com.sprint3.dto.Florist;
+import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
 
@@ -86,17 +89,17 @@ public class FloristView {
 		System.out.println("=== Stock ===");
 	}
 
-	public void displayFloristStock(List<Product> stock) {
-		String stockHeadings = String.format("%-25s | %10s", "Florist´s name", "Stock");
-		io.print(stockHeadings);
-		io.print(
-				"-----------------------------------------------------------------------------------------------------------------");
-		for (Product florist : stock) {
-			String floristStock = String.format("%-25s | %10s", florist.getName(), florist.getStock());
-			io.print(floristStock);
-		}
-		io.leerString("Please hit enter to continue");
-	}
+//	public void displayFloristStock(List<Product> stock) {
+//		String stockHeadings = String.format("%-25s | %10s", "Florist´s name", "Stock");
+//		io.print(stockHeadings);
+//		io.print(
+//				"-----------------------------------------------------------------------------------------------------------------");
+//		for (Product florist : stock) {
+//			String floristStock = String.format("%-25s | %10s", florist.getName(), florist.getStock());
+//			io.print(floristStock);
+//		}
+//		io.leerString("Please hit enter to continue");
+//	}
 
 	public void displayOldPurchasesBanner() {
 		System.out.println("=== Old Purchases ===");
@@ -121,6 +124,33 @@ public class FloristView {
 			io.print("No such Product.");
 		}
 		io.leerString("Please hit enter to continue.");
+	}
+
+	public Product getNewProductInfo() {
+		
+		int id = io.leerInt("Id:");
+		String name = io.leerString("Nombre:");
+		float price = io.leerFloat("Price:");
+		String type = io.leerString("Tipo:");
+        
+        //Instantiating a new Product object using the title to satisfy the constructors requirements
+        Product currentProduct = null;
+        
+        switch(type) {
+        	case "Tree":
+        		float height = io.leerFloat("Altura:");
+        		currentProduct = new Tree(id, name, price, height);
+        		break;
+        	case "Flower":
+        		String colour = io.leerString("Color:");
+        		currentProduct = new Flower(id, name, price, colour);
+        		break;
+        	case "Decoration":
+        		String material = io.leerString("Material:");
+        		currentProduct = new Decoration(id, name, price, material);
+        		break;
+        }
+        return currentProduct;
 	}
 	
 }

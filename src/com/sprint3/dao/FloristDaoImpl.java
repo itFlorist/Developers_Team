@@ -63,6 +63,16 @@ public class FloristDaoImpl implements FloristDao{
 //		scanner.close();
 //
 //	}
+    
+    public Product addProduct(int id, Product product) throws FloristDaoException{
+    	System.out.println(id);
+    	loadStock();
+    	System.out.println(stock);
+    	Product newProduct = stock.put(id, product);
+    	System.out.println(stock);
+    	writeStock();
+    	return newProduct;
+    }
 	
     public Product removeProduct(int id) throws FloristDaoException {
         loadStock();
@@ -227,7 +237,7 @@ public class FloristDaoImpl implements FloristDao{
 		// loadFlorist();
 
 		for (Product product : stock) {
-			if (product.getType().equals("Tree")) {
+			if (product.getClass().getSimpleName().equals("Tree")) {
 				int treeStock = stock.size();
 			} else if (product.equals("Flower")) {
 				int flowerStock = stock.size();

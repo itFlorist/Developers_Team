@@ -4,7 +4,7 @@ public class Flower extends Product {
 
 	private String colour;
 
-
+	
 	public Flower(String colour) {
 		super();
 		this.colour = colour;
@@ -28,8 +28,6 @@ public class Flower extends Product {
 	public String toString() {
 		return "Flower [colour=" + colour + "]";
 	}
-
-
 
 	@Override
 	public float getHeight() {
