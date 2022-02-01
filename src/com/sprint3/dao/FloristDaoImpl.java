@@ -11,68 +11,40 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+
 import com.sprint3.dto.Decoration;
-import com.sprint3.dto.Florist;
 import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
 
-public class FloristDaoImpl implements FloristDao{
+public class FloristDaoImpl implements FloristDao {
 
-/*	
-  	private void showFloristValue(List<Product> stock) {}
-	private void showFloristStock(List<Product> stock) {}
-	private void showCurrentPurchaseReceipt(List<Product> stock) {}
-	private void showOldPurchaseReceipts(List<Product> stock) {}
-	private void totalIncome(List<Product> stock) {}
-	*/
+	/*
+	 * private void showFloristValue(List<Product> stock) {} private void
+	 * showFloristStock(List<Product> stock) {} private void
+	 * showCurrentPurchaseReceipt(List<Product> stock) {} private void
+	 * showOldPurchaseReceipts(List<Product> stock) {} private void
+	 * totalIncome(List<Product> stock) {}
+	 */
 
 	private Map<Integer, Product> stock = new HashMap<>();
-	
+
 	private final String FLORIST_FILE;
-    private final String DELIMITER = "::";
-	
+
+  private final String DELIMITER = "::";
     
     public FloristDaoImpl() {
     	FLORIST_FILE = "florist.txt";
     }
-
-//	public Product addTree(int id, Tree tree) {
-//		loadFlorist();
-//		Product newTree = stock.put(id, tree);
-//		writeFlorist();
-//		return newTree;
-//	}
-//
-//	// FILE PERSISTENCE
-//
-//	private void loadFlorist() {
-//		Scanner scanner;
-//		try {
-//			scanner = new Scanner(new BufferedReader(new FileReader(FLORIST_FILE)));
-//		} catch (Exception e) {
-//			System.out.println("File does not exist");
-//		}
-//		String currentLine;
-//		Tree currentTree;
-//		while (scanner.hasNextLine()) {
-//			currentLine = scanner.nextLine();
-//			currentTree = unmarshallTree(currentLine);
-//			stock.put(currentTree.getId(), currentTree);
-//		}
-//		scanner.close();
-//
-//	}
     
-    public Product addProduct(int id, Product product) throws FloristDaoException{
-    	System.out.println(id);
-    	loadStock();
-    	System.out.println(stock);
-    	Product newProduct = stock.put(id, product);
-    	System.out.println(stock);
-    	writeStock();
-    	return newProduct;
-    }
+	public void addProductType(int id, Product product) throws FloristDaoException {
+		loadStock();
+		System.out.println(stock);
+		Product newProduct = stock.put(id, product);
+		System.out.println(stock);
+		writeStock();
+		System.out.println(stock);
+	}
 	
     public Product removeProduct(int id) throws FloristDaoException {
         loadStock();
@@ -167,84 +139,78 @@ public class FloristDaoImpl implements FloristDao{
         productFromFile.setId(id);
         productFromFile.setName(name);
         productFromFile.setPrice(Float.parseFloat(price));
-//        productFromFile.setType(type);
-//        productFromFile.setHeight(height);
-//        productFromFile.setColor(color);
-//        productFromFile.setMaterial(material);
-        
-        return productFromFile;
-    }
-    
-    
+
+		return productFromFile;
+	}
+
 	private void loadStock() throws FloristDaoException {
 		Scanner scanner;
-        try {
-            // Create Scanner for reading the file
-            scanner = new Scanner(
-                    new BufferedReader(
-                            new FileReader(FLORIST_FILE)));
-        } catch (FileNotFoundException e) {
-            throw new FloristDaoException(
-                    "-_- Could not load roster data into memory.", e);
-        }
-        //currentLine holds the most recent line read from the file
-        String currentLine;
-        //curentDvd holds the most recent DVD unmarshalled
-        Product currentProduct;
-        //Go through LIBRARY_FILE line by line, decoding each line into a Product
-        //object by calling the unmarshallProduct method. Process while we have more
-        //more lines in the file
-        while (scanner.hasNextLine()) {
-            //get the next line in the file
-            currentLine = scanner.nextLine();
-            //unmarshall the line into a Product
-            currentProduct = unmarshallProduct(currentLine);
-            
-            //The Product id is used as a map key to put the currentProduct into the map
-            stock.put(currentProduct.getId(),currentProduct);
-        }
-        //Clean up
-        scanner.close();
-	}
-	
-    private void writeStock() throws FloristDaoException {
-    // We are translating the IOException to an application specific exception
-    //and then simple throwing it i.e. reporting it to the code that called us.
-    
-    PrintWriter out;
-    
-    try {
-        out = new PrintWriter(new FileWriter(FLORIST_FILE));
-    } catch (IOException e) {
-        throw new FloristDaoException("Could not save Product data",e);
-    }
-    String productAsText;
-    List <Product> productList = this.getAllProducts();
-    for (Product currentProduct : productList) {
-        //turn a Product into a string
-    	productAsText = marshallProduct(currentProduct);
-        //write the Product object to to the file;
-        out.println(productAsText);
-        //force PrintWriter to write line to the file
-        out.flush();
-    }
-    //Clean up
-    out.close();
-    }
-
-	public List<Product> getAllStock(List<Product> stock) {
-
-		// loadFlorist();
-
-		for (Product product : stock) {
-			if (product.getClass().getSimpleName().equals("Tree")) {
-				int treeStock = stock.size();
-			} else if (product.equals("Flower")) {
-				int flowerStock = stock.size();
-			} else if (product.equals("Decoration")) {
-				int decorationStock = stock.size();
-			}
+		try {
+			// Create Scanner for reading the file
+			scanner = new Scanner(new BufferedReader(new FileReader(FLORIST_FILE)));
+		} catch (FileNotFoundException e) {
+			throw new FloristDaoException("-_- Could not load roster data into memory.", e);
 		}
-		return stock;
+		// currentLine holds the most recent line read from the file
+		String currentLine;
+		// curentDvd holds the most recent DVD unmarshalled
+		Product currentProduct;
+		// Go through LIBRARY_FILE line by line, decoding each line into a Product
+		// object by calling the unmarshallProduct method. Process while we have more
+		// more lines in the file
+		while (scanner.hasNextLine()) {
+			// get the next line in the file
+			currentLine = scanner.nextLine();
+			// unmarshall the line into a Product
+			currentProduct = unmarshallProduct(currentLine);
+
+			// The Product id is used as a map key to put the currentProduct into the map
+			stock.put(currentProduct.getId(), currentProduct);
+		}
+		// Clean up
+		scanner.close();
 	}
+
+
+	private void writeStock() throws FloristDaoException {
+		// We are translating the IOException to an application specific exception
+		// and then simple throwing it i.e. reporting it to the code that called us.
+
+		PrintWriter out;
+
+		try {
+			out = new PrintWriter(new FileWriter(FLORIST_FILE));
+		} catch (IOException e) {
+			throw new FloristDaoException("Could not save Product data", e);
+		}
+		String productAsText;
+		List<Product> productList = this.getAllProducts();
+		for (Product currentProduct : productList) {
+			// turn a Product into a string
+			productAsText = marshallProduct(currentProduct);
+			// write the Product object to to the file;
+			out.println(productAsText);
+			// force PrintWriter to write line to the file
+			out.flush();
+		}
+		// Clean up
+		out.close();
+	}
+
+//	public List<Product> getAllStock(List<Product> stock) {
+//
+//		// loadFlorist();
+//
+//		for (Product product : stock) {
+//			if (product.getType().equals("Tree")) {
+//				int treeStock = stock.size();
+//			} else if (product.equals("Flower")) {
+//				int flowerStock = stock.size();
+//			} else if (product.equals("Decoration")) {
+//				int decorationStock = stock.size();
+//			}
+//		}
+//		return stock;
+//	}
+
 }

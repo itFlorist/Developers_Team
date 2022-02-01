@@ -1,9 +1,9 @@
 package com.sprint3.dto;
 
 public class Decoration extends Product {
-	
+
 	private String material;
-	
+
 	public Decoration(String material) {
 		super();
 		this.material = material;
@@ -22,17 +22,16 @@ public class Decoration extends Product {
 		this.material = material; 
 		}
 
-	
 	@Override
 	public String toString() {
 		return "Decoration [material=" + material + "]";
 	}
 
-
 	@Override
 	public float getHeight() {
 		return 0;
 	}
+
 	@Override
 	public String getFlowerColour() {
 		return null;
