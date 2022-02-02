@@ -1,5 +1,4 @@
-0::Orchid::16.75::Flower::0.0::Red::null
-6::Oak::33.0::Tree::8.0::null::null
-9::j::6.0::Decoration::0.0::null::Wood
-14::arbol::5.0::Tree::3.0::null::null
-
+2::Calendula::60.0::Flower::0.0::Azul::null
+3::Casa::90.0::Decoration::0.0::null::Plastico
+4::Roble::60.0::Tree::5.0::null::null
+5::Silla::85.0::Decoration::0.0::null::madera
