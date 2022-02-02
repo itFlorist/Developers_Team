@@ -32,7 +32,7 @@ public class FloristController {
 					removeProduct();
 					break;
 				case 3:
-//					showFloristStock();
+					showFloristStock();
 					break;
 				case 4:
 					showFloristValue();
@@ -99,15 +99,14 @@ public class FloristController {
 		System.out.println(removedProduct);
 		floristView.displayRemoveResult(removedProduct);
 	}
+	
+	private void showFloristStock() throws FloristDaoException { 
 
-//	private void showFloristStock() { // Oliver
-//
-//		floristView.displayStockBanner();
-//		List<Product> stock = floristDao.getAllStock();
-//		floristView.displayFloristStock(stock);
-//
-//	}
-
+		floristView.displayStockBanner();
+		List<Product> stock = floristDao.getAllStock();
+		floristView.displayTotalTypeProducts(stock);
+		floristView.displayFloristStock(stock);
+  }
 	private void showFloristValue() throws FloristDaoException {
 		float value = floristDao.getFloristValue();
 		floristView.displayStockValue(value);

@@ -39,11 +39,8 @@ public class FloristDaoImpl implements FloristDao {
 
 	public void addProductType(int id, Product product) throws FloristDaoException {
 		loadStock();
-		System.out.println(stock);
 		Product newProduct = stock.put(id, product);
-		System.out.println(stock);
 		writeStock();
-		System.out.println(stock);
 	}
 
 	public Product removeProduct(int id) throws FloristDaoException {
@@ -57,7 +54,6 @@ public class FloristDaoImpl implements FloristDao {
 		loadStock();
 		return new ArrayList(stock.values());
 	}
-
 	/**
 	 * Method that calculates the value of the stock.
 	 */
@@ -69,7 +65,6 @@ public class FloristDaoImpl implements FloristDao {
 		}
 		return value;
 	}
-
 	// FILE PERSISTENCE
 	// Data Marshalling & Unmarshalling
 	/**
@@ -210,27 +205,9 @@ public class FloristDaoImpl implements FloristDao {
 		// Clean up
 		out.close();
 	}
-
-	@Override
-	public List<Product> getAllStock(List<Product> stock) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> getAllStock() throws FloristDaoException {
+		loadStock();
+		List<Product> products = getAllProducts();
+		return products;
 	}
-
-//	public List<Product> getAllStock(List<Product> stock) {
-//
-//		// loadFlorist();
-//
-//		for (Product product : stock) {
-//			if (product.getType().equals("Tree")) {
-//				int treeStock = stock.size();
-//			} else if (product.equals("Flower")) {
-//				int flowerStock = stock.size();
-//			} else if (product.equals("Decoration")) {
-//				int decorationStock = stock.size();
-//			}
-//		}
-//		return stock;
-//	}
-
 }

@@ -19,7 +19,7 @@ public class FloristManagerView {
 		io.print("2. Delete Florist");
 		io.print("3. Show Florists");
 		io.print("4. Run Florist");
-		io.print("0. Exit");
+		io.print("0. Exit.\n");
 		
 		return io.leerInt("Select an option: ", 0, 4);
 	}
