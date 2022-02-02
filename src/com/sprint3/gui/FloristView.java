@@ -23,8 +23,8 @@ public class FloristView {
 		io.print("\n== MAIN MENU ==");
 		io.print("1. Add Product.");
 		io.print("2. Delete Product.");
-		io.print("3. Show FloristÂ´s stock.");
-		io.print("4. Show FloristÂ´s value.");
+		io.print("3. Show Florist's stock.");
+		io.print("4. Show Florist's value.");
 		io.print("5. Get current purchase receipt.");
 		io.print("6. Get old purchase receipts.");
 		io.print("7. Display total income.");
