@@ -1,9 +1,7 @@
 package com.sprint3.gui;
 
 import java.util.List;
-
 import com.sprint3.dto.Decoration;
-import com.sprint3.dto.Florist;
 import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
@@ -25,8 +23,8 @@ public class FloristView {
 		io.print("\n== MAIN MENU ==");
 		io.print("1. Add Product.");
 		io.print("2. Delete Product.");
-		io.print("3. Show Florist´s stock.");
-		io.print("4. Show Florist´s value.");
+		io.print("3. Show FloristÂ´s stock.");
+		io.print("4. Show FloristÂ´s value.");
 		io.print("5. Get current purchase receipt.");
 		io.print("6. Get old purchase receipts.");
 		io.print("7. Display total income.");
@@ -189,6 +187,19 @@ public class FloristView {
 
 	public void unknownCommand() {
 		io.print("Unknown command!");
+
+	}
+
+	/**
+	 * Method that shows on console the value recieved by parameter.
+	 * 
+	 * @param value
+	 */
+	public void displayStockValue(float value) {
+		io.print("\n*******STOCK VALUE******");
+		io.print("--------------------------");
+		io.print("       " + value + "€     ");
+		io.print("--------------------------");
 
 	}
 

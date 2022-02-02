@@ -1,6 +1,5 @@
 package com.sprint3.controller;
 
-import java.util.List;
 import com.sprint3.dao.FloristDao;
 import com.sprint3.dao.FloristDaoException;
 import com.sprint3.dto.Product;
@@ -107,11 +106,10 @@ public class FloristController {
 		List<Product> stock = floristDao.getAllStock();
 		floristView.displayTotalTypeProducts(stock);
 		floristView.displayFloristStock(stock);
-
-	}
-	
-	private void showFloristValue() {
-
+  }
+	private void showFloristValue() throws FloristDaoException {
+		float value = floristDao.getFloristValue();
+		floristView.displayStockValue(value);
 	}
 
 	private void showCurrentPurchaseReceipt() {

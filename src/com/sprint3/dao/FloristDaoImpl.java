@@ -54,7 +54,17 @@ public class FloristDaoImpl implements FloristDao {
 		loadStock();
 		return new ArrayList(stock.values());
 	}
-
+	/**
+	 * Method that calculates the value of the stock.
+	 */
+	public float getFloristValue() throws FloristDaoException {
+		loadStock();
+		float value = 0;
+		for (Map.Entry<Integer, Product> entry : stock.entrySet()) {
+			value = value + entry.getValue().getPrice();
+		}
+		return value;
+	}
 	// FILE PERSISTENCE
 	// Data Marshalling & Unmarshalling
 	/**
@@ -195,9 +205,7 @@ public class FloristDaoImpl implements FloristDao {
 		// Clean up
 		out.close();
 	}
-
 	public List<Product> getAllStock() throws FloristDaoException {
-
 		loadStock();
 		List<Product> products = getAllProducts();
 		return products;
