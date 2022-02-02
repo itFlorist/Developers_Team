@@ -33,7 +33,7 @@ public class FloristController {
 					removeProduct();
 					break;
 				case 3:
-//					showFloristStock();
+					showFloristStock();
 					break;
 				case 4:
 					showFloristValue();
@@ -51,7 +51,7 @@ public class FloristController {
 					keepGoing = false;
 					break;
 				default:
-					//unknownCommand();
+					// unknownCommand();
 				}
 			}
 			exitMessage();
@@ -60,8 +60,8 @@ public class FloristController {
 			floristView.displayErrorMessage(e.getMessage());
 		}
 	}
-	
-  private void addProductSelection() throws FloristDaoException {
+
+	private void addProductSelection() throws FloristDaoException {
 		boolean keepGoing = true;
 		int menuSelection;
 		while (keepGoing) {
@@ -85,30 +85,31 @@ public class FloristController {
 			}
 		}
 	}
-  
+
 	private void addProduct(String product) throws FloristDaoException {
 		floristView.displayCreateProductBanner(product);
 		Product newProduct = floristView.getNewProductInfo(product);
 		floristDao.addProductType(newProduct.getId(), newProduct);
 		floristView.displayCreateSuccessBanner(product);
 	}
-	
-	private void removeProduct() throws FloristDaoException{
+
+	private void removeProduct() throws FloristDaoException {
 		floristView.displayRemoveProductBanner();
-        int id = floristView.getProductIdChoice();
-        Product removedProduct = floristDao.removeProduct(id);
-        System.out.println(removedProduct);
-        floristView.displayRemoveResult(removedProduct);
+		int id = floristView.getProductIdChoice();
+		Product removedProduct = floristDao.removeProduct(id);
+		System.out.println(removedProduct);
+		floristView.displayRemoveResult(removedProduct);
 	}
+	
+	private void showFloristStock() throws FloristDaoException { 
 
-//	private void showFloristStock() { // Oliver
-//
-//		floristView.displayStockBanner();
-//		List<Product> stock = floristDao.getAllStock();
-//		floristView.displayFloristStock(stock);
-//
-//	}
+		floristView.displayStockBanner();
+		List<Product> stock = floristDao.getAllStock();
+		floristView.displayTotalTypeProducts(stock);
+		floristView.displayFloristStock(stock);
 
+	}
+	
 	private void showFloristValue() {
 
 	}
@@ -138,5 +139,9 @@ public class FloristController {
 	private void exitMessage() {
 		floristView.displayExitBanner();
 
+	}
+
+	private int getAddMenuSelection() {
+		return floristView.printAddMenuAndGetSelection();
 	}
 }

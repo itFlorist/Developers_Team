@@ -1,6 +1,5 @@
 package com.sprint3.gui;
 
-
 import java.util.List;
 
 import com.sprint3.dto.Decoration;
@@ -23,7 +22,7 @@ public class FloristView {
 
 	public int menuProduct() {
 
-		io.print("\nMAIN MENU");
+		io.print("\n== MAIN MENU ==");
 		io.print("1. Add Product.");
 		io.print("2. Delete Product.");
 		io.print("3. Show Florist´s stock.");
@@ -33,7 +32,7 @@ public class FloristView {
 		io.print("7. Display total income.");
 		io.print("0. Exit.\n");
 
-		return io.leerInt("Please select one choice.", 0, 7);
+		return io.leerInt("Please select one choice: ", 0, 7);
 
 	}
 
@@ -122,20 +121,46 @@ public class FloristView {
 	}
 
 	public void displayStockBanner() {
-		System.out.println("=== Stock ===");
+		io.print("");
+		io.print("=== Stock ===");
+		io.print("");
 	}
 
-//	public void displayFloristStock(List<Product> stock) {
-//		String stockHeadings = String.format("%-25s | %10s", "Florist´s name", "Stock");
-//		io.print(stockHeadings);
-//		io.print(
-//				"-----------------------------------------------------------------------------------------------------------------");
-//		for (Product florist : stock) {
-//			String floristStock = String.format("%-25s | %10s", florist.getName(), florist.getStock());
-//			io.print(floristStock);
-//		}
-//		io.leerString("Please hit enter to continue");
-//	}
+	public void displayTotalTypeProducts(List<Product> stock) {
+
+		int treeStock = 0;
+		int flowerStock = 0;
+		int decorationStock = 0;
+
+		for (Product product : stock) {
+			if (product.getClass().getSimpleName().equals("Tree")) {
+				treeStock++;
+			} else if (product.getClass().getSimpleName().equals("Flower")) {
+				flowerStock++;
+			} else if (product.getClass().getSimpleName().equals("Decoration")) {
+				decorationStock++;
+			}
+		}
+		io.print("Trees: " + treeStock);
+		io.print("Flowers: " + flowerStock);
+		io.print("Decoration: " + decorationStock);
+	}
+
+	public void displayFloristStock(List<Product> stock) {
+		String stockHeadings = String.format("%2s | %15s | %12s | %8s", "ID", "PRODUCT TYPE", "NAME", "PRICE");
+		io.print(" ");
+		io.print(stockHeadings);
+		io.print(
+				"-----------------------------------------------------------------------------------------------------------------");
+		for (Product florist : stock) {
+			String floristStock = String.format("%2s | %15s | %12s | %8s", florist.getId(),
+					florist.getClass().getSimpleName(), florist.getName(), florist.getPrice());
+			io.print(floristStock);
+		}
+		io.print(
+				"-----------------------------------------------------------------------------------------------------------------");
+		io.leerString("Please hit enter to continue");
+	}
 
 	public void displayOldPurchasesBanner() {
 		System.out.println("=== Old Purchases ===");

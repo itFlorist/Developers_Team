@@ -1,5 +1,9 @@
-0::Orchid::16.75::Flower::0.0::Red::null
+1::Orchid::16.75::Flower::0.0::Red::null
 6::Oak::33.0::Tree::8.0::null::null
-9::j::6.0::Decoration::0.0::null::Wood
-14::arbol::5.0::Tree::3.0::null::null
-
+9::Jar::6.0::Decoration::0.0::null::Wood
+11::Olive Tree::450.0::Tree::3.0::null::null
+14::Pine::300.0::Tree::7.0::null::null
+15::Acacia::250.0::Tree::4.0::null::null
+2::Rose::12.75::Flower::0.0::Red::null
+3::Tulip::22.75::Flower::0.0::Orange::null
+10::Vase::11.99::Decoration::0.0::null::Glass
