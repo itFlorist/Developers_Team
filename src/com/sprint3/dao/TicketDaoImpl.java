@@ -17,7 +17,7 @@ import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
 
-public class FloristDaoImpl implements FloristDao {
+public class TicketDaoImpl implements FloristDao {
 
 	/*
 	 * private void showFloristValue(List<Product> stock) {} private void
@@ -34,7 +34,7 @@ public class FloristDaoImpl implements FloristDao {
 
 	private final String DELIMITER = "::";
 
-	public FloristDaoImpl() {
+	public TicketDaoImpl() {
 		FLORIST_FILE = "florist.txt";
 		TICKET_FILE = "ticket.txt";
 	}

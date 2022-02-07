@@ -19,12 +19,12 @@ public class Main {
 		FloristManagerDao myDao = new FloristManagerDaoImpl();
 		FloristManagerController controller = new FloristManagerController(myView, myDao);
 
-		FloristView fView = new FloristView(myIo);
-		FloristDao fDao = new FloristDaoImpl();
-		FloristController fController = new FloristController(fView, fDao);
+//		FloristView fView = new FloristView(myIo);
+//		FloristDao fDao = new FloristDaoImpl();
+//		FloristController fController = new FloristController(fView, fDao);
 
 		controller.run();
-		fController.runProduct();
+//		fController.runProduct();
 
 	}
 
