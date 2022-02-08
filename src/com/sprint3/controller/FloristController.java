@@ -1,10 +1,13 @@
 package com.sprint3.controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.sprint3.dao.FloristDao;
 import com.sprint3.dao.FloristDaoException;
 import com.sprint3.dto.Product;
+import com.sprint3.dto.Ticket;
 import com.sprint3.gui.FloristView;
 
 public class FloristController {
@@ -118,10 +121,12 @@ public class FloristController {
 
 	}
 
-	private void showOldPurchaseReceipts() {
-
-		// Oliver
-
+	private void showOldPurchaseReceipts() throws FloristDaoException {
+		floristView.displayOldReceiptsBanner();
+		List<Ticket> tickets = floristDao.getAllTickets();	
+		LocalDate date = floristView.getTicketDateChoice();
+		tickets = floristDao.getOldTickets(tickets, date);
+		floristView.displayOldTickets(tickets, date);
 	}
 
 	private void totalIncome() {

@@ -1,9 +1,12 @@
 package com.sprint3.gui;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import com.sprint3.dto.Decoration;
 import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
+import com.sprint3.dto.Ticket;
 import com.sprint3.dto.Tree;
 
 public class FloristView {
@@ -160,10 +163,6 @@ public class FloristView {
 		io.leerString("Please hit enter to continue");
 	}
 
-	public void displayOldPurchasesBanner() {
-		System.out.println("=== Old Purchases ===");
-	}
-
 	public void displayExitBanner() {
 		io.print("Bye bye!");
 	}
@@ -201,6 +200,43 @@ public class FloristView {
 		io.print("       " + value + "€     ");
 		io.print("--------------------------");
 
+	}
+
+	public void displayOldReceiptsBanner() {
+		io.print("\n-- Old Purchase Receipts --");
+
+	}
+
+	public LocalDate getTicketDateChoice() {
+		LocalDate dateTicket = null;
+		int year = io.leerInt("\nPlease enter Purchase's year: ", 2020, 2022);
+		int month = io.leerInt("\nPlease enter Purchase's month by number: ", 1, 12);
+		int day = io.leerInt("\nPlease enter Purchase's day: ", 1, 31);
+		dateTicket = LocalDate.of(year, month, day);
+		io.print("\nTicket's date: " + dateTicket);
+		return dateTicket;
+
+	}
+
+	public void displayOldTickets(List<Ticket> tickets, LocalDate date) {
+		for (Ticket ticket : tickets) {
+			if (ticket.getDate() == date) {
+				foundTicket();
+
+			} else {
+				notFoundTicket();
+			}
+		}
+
+	}
+
+	private void notFoundTicket() {
+		io.print("Not found ticket!");
+		
+	}
+
+	private void foundTicket() {
+		io.print("Ticket found!");
 	}
 
 }
