@@ -45,7 +45,7 @@ public class FloristDaoImpl implements FloristDao {
 
 	public void addProductType(int id, Product product) throws FloristDaoException {
 		loadStock();
-		Product newProduct = stock.put(id, product);
+		stock.put(id, product);
 		writeStock();
 	}
 

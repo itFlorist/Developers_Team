@@ -1,6 +1,7 @@
 package com.sprint3.controller;
 
 
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -107,6 +108,7 @@ public class FloristController {
 		//System.out.println(removedProduct);
 		floristView.displayRemoveResult(removedProduct);
 	}
+
 	
 	private void showFloristStock() throws FloristDaoException { 
 		floristView.displayStockBanner();
@@ -114,7 +116,7 @@ public class FloristController {
 		floristView.displayTotalTypeProducts(stock);
 		floristView.displayFloristStock(stock);
 	}
-	
+
 	private void showFloristValue() throws FloristDaoException {
 		float value = floristDao.getFloristValue();
 		floristView.displayStockValue(value);
