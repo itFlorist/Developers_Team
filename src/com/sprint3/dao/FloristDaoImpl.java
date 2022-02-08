@@ -39,7 +39,7 @@ public class FloristDaoImpl implements FloristDao {
 
 	public void addProductType(int id, Product product) throws FloristDaoException {
 		loadStock();
-		Product newProduct = stock.put(id, product);
+		stock.put(id, product);
 		writeStock();
 	}
 
@@ -54,6 +54,7 @@ public class FloristDaoImpl implements FloristDao {
 		loadStock();
 		return new ArrayList(stock.values());
 	}
+
 	/**
 	 * Method that calculates the value of the stock.
 	 */
@@ -65,6 +66,7 @@ public class FloristDaoImpl implements FloristDao {
 		}
 		return value;
 	}
+
 	// FILE PERSISTENCE
 	// Data Marshalling & Unmarshalling
 	/**
@@ -205,6 +207,7 @@ public class FloristDaoImpl implements FloristDao {
 		// Clean up
 		out.close();
 	}
+
 	public List<Product> getAllStock() throws FloristDaoException {
 		loadStock();
 		List<Product> products = getAllProducts();
