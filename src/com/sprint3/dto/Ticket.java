@@ -1,48 +1,94 @@
 package com.sprint3.dto;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Ticket {
 
-	private int idTicket;
-	private Date date;
-	private List<Product> purchase;
-	private float totalCost;
-	
-	public Ticket() {}
-	
-	public Ticket(int idTicket) {
-		this.idTicket = idTicket;
+	private int ticketId;
+	private LocalDate date;
+	private float totalPurchasePrice;
+  private List<Product> purchase;
+
+	private int productId;
+	private String productName;
+	private float productPrice;
+	private String productFeature;
+
+	public Ticket() {
+
+	}
+  public Ticket(int ticketId) {
+		this.ticketId = ticketId;
 		this.date = new Date(); 
 	}
 
-	public int getIdTicket() {
-		return idTicket;
-	}
-	public void setIdTicket(int idTicket) {
-		this.idTicket = idTicket;
+	public Ticket(int ticketId, LocalDateTime date, float totalPurchasePrice, int productId, String productName,
+			float productPrice, String productFeature) {
+		super();
+		this.ticketId = ticketId;
+		this.date = LocalDate.now();
+		this.totalPurchasePrice = totalPurchasePrice;
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productFeature = productFeature;
 	}
 
-	public Date getDate() {
+	public int getTicketId() {
+		return ticketId;
+	}
+  
+
+	public void setTicketId(int ticketId) {
+		this.ticketId = ticketId;
+	}
+
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
-	public List<Product> getPurchase() {
-		return purchase;
-	}
-	public void setPurchase(List<Product> purchase) {
-		this.purchase = purchase;
+	public float getTotalPurchasePrice() {
+		return totalPurchasePrice;
 	}
 
-	public float getTotalCost() {
-		return totalCost;
+	public void setTotalPurchasePrice(float totalPurchasePrice) {
+		this.totalPurchasePrice = totalPurchasePrice;
 	}
-	public void setTotalCost(float totalCost) {
-		this.totalCost = totalCost;
+
+	public int getProductId() {
+		return productId;
 	}
-	
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+	public float getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(float productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public String getProductFeature() {
+		return productFeature;
+	}
+
+	public void setProductFeature(String productFeature) {
+		this.productFeature = productFeature;
+	}
+
+	@Override
+	public String toString() {
+		return "Ticket [ticketId=" + ticketId + ", date=" + date + ", totalPurchasePrice=" + totalPurchasePrice
+				+ ", productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice
+				+ ", productFeature=" + productFeature + "]";
+	}
 }
+

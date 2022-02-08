@@ -1,12 +1,14 @@
 package com.sprint3.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.sprint3.dto.Product;
+import com.sprint3.dto.Ticket;
 
 public interface FloristDao {
-	
-	List<Product> getAllStock() throws FloristDaoException;	
+
+	List<Product> getAllStock() throws FloristDaoException;
 
 	Product removeProduct(int id) throws FloristDaoException;
 
@@ -15,5 +17,9 @@ public interface FloristDao {
 	void addProductType(int id, Product product) throws FloristDaoException;
 
 	public float getFloristValue() throws FloristDaoException;
+
+	List<Ticket> getAllTickets() throws FloristDaoException;
+
+	List<Ticket> getOldTickets(List<Ticket> tickets, LocalDate date) throws FloristDaoException;
 
 }
