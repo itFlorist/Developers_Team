@@ -6,19 +6,18 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+
 import com.sprint3.dto.Decoration;
 import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
-import com.sprint3.dto.Ticket;
 import com.sprint3.dto.Tree;
 
-public class FloristDaoImpl implements FloristDao {
+public class TicketDaoImpl implements FloristDao {
 
 	/*
 	 * private void showFloristValue(List<Product> stock) {} private void
@@ -29,23 +28,20 @@ public class FloristDaoImpl implements FloristDao {
 	 */
 
 	private Map<Integer, Product> stock = new HashMap<>();
-	private Map<Integer, Ticket> tickets = new HashMap<>();
 
 	private final String FLORIST_FILE;
 	private final String TICKET_FILE;
 
-	private final String TICKET_FILE;
-
 	private final String DELIMITER = "::";
 
-	public FloristDaoImpl(String file) {
-		FLORIST_FILE = file;
+	public TicketDaoImpl() {
+		FLORIST_FILE = "florist.txt";
 		TICKET_FILE = "ticket.txt";
 	}
 
 	public void addProductType(int id, Product product) throws FloristDaoException {
 		loadStock();
-		stock.put(id, product);
+		Product newProduct = stock.put(id, product);
 		writeStock();
 	}
 
@@ -60,7 +56,6 @@ public class FloristDaoImpl implements FloristDao {
 		loadStock();
 		return new ArrayList<Product>(stock.values());
 	}
-
 	/**
 	 * Method that calculates the value of the stock.
 	 */
@@ -72,7 +67,6 @@ public class FloristDaoImpl implements FloristDao {
 		}
 		return value;
 	}
-
 	// FILE PERSISTENCE
 	// Data Marshalling & Unmarshalling
 	/**
@@ -109,7 +103,7 @@ public class FloristDaoImpl implements FloristDao {
 		// iD::name::price::class::height::color::material
 		//
 		// This line is then split at the DELIMITER (::), leaving an array of Strings,
-		// stored as productTokens, which should look like this:
+		// stored as dvdTokens, which should look like this:
 		// ___________________________________________
 		// | | | | | | | |
 		// |00001|Orchid|21.95|Flower|NULL|White|NULL|
@@ -204,98 +198,9 @@ public class FloristDaoImpl implements FloristDao {
 		// Clean up
 		out.close();
 	}
-
 	public List<Product> getAllStock() throws FloristDaoException {
 		loadStock();
 		List<Product> products = getAllProducts();
 		return products;
 	}
-
-	public List<Ticket> getAllTickets() throws FloristDaoException {
-//		loadTicket();
-		List<Ticket> tickets = getTickets();
-		return tickets;
-	}
-
-	public List<Ticket> getTickets() throws FloristDaoException {
-		loadTicket();
-		return new ArrayList<Ticket>(tickets.values());
-	}
-
-	private void loadTicket() throws FloristDaoException {
-		Scanner scanner;
-		try {
-			// Create Scanner for reading the file
-			scanner = new Scanner(new BufferedReader(new FileReader(TICKET_FILE)));
-		} catch (FileNotFoundException e) {
-			throw new FloristDaoException("-_- Could not load roster data into memory.", e);
-		}
-		// currentLine holds the most recent line read from the file
-		String currentLine;
-		// currentTicket holds the most recent Ticket unmarshalled
-		Ticket currentTicket;
-		// Go through TICKET_FILE line by line, decoding each line into a Ticket
-		// object by calling the unmarshallTicket method. Process while we have more
-		// more lines in the file
-		while (scanner.hasNextLine()) {
-			// get the next line in the file
-			currentLine = scanner.nextLine();
-			// unmarshall the line into a Ticket
-			currentTicket = unmarshallTicket(currentLine);
-
-			// The Ticket id is used as a map key to put the currentTicket into the map
-			tickets.put(currentTicket.getTicketId(), currentTicket);
-		}
-		// Clean up
-		scanner.close();
-	}
-
-	private Ticket unmarshallTicket(String ticketAsText) {
-		// ticketAsText is expecting a line read in from our file.
-		// E.g., it might look like this:
-		// 00001::07/07/2022::85.95
-		// TicketId::date::totalPurchasePrice
-		//
-		// 00001::Oak::49.99::5.75
-		// productId::productName::productPrice::productFeature
-		//
-		// This line is then split at the DELIMITER (::), leaving an array of Strings,
-		// stored as ticketTokens, which should look like this:
-		// _________________________
-		// | | | | | | | | | | | | |
-		// |00001|07/07/2022 |85.95|
-		// | | | | | | | | | | | | |
-		// -------------------------
-		// [0] [1] [2]
-		// ___________________________
-		// | | | | | | | | | | | | | |
-		// |000022 | Oak |49.99| 5.75|
-		// | | | | | | | | | | | | | |
-		// ---------------------------
-		// [3] [4] [5] [6]
-
-		String[] productTokens = ticketAsText.split(DELIMITER);
-		String ticketId = productTokens[0];
-		String date = productTokens[1];
-		String totalPurchasePrice = productTokens[2];
-		String productId = productTokens[3];
-		String productName = productTokens[4];
-		String productPrice = productTokens[5];
-		String productFeature = productTokens[6];
-
-		// A new Project object is created using the id to satisfy the
-		// requirements of the Project constructor
-		int id = Integer.parseInt(ticketId);
-		Ticket ticketFromFile = null; // = new Ticket(id);
-
-		return ticketFromFile;
-	}
-
-	@Override
-	public List<Ticket> getOldTickets(List<Ticket> tickets, LocalDate date) throws FloristDaoException {
-		loadTicket();
-		
-		return null;
-	}
-
 }

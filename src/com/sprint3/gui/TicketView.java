@@ -1,16 +1,12 @@
 package com.sprint3.gui;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-
 import com.sprint3.dto.Decoration;
 import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
-import com.sprint3.dto.Ticket;
 import com.sprint3.dto.Tree;
 
-public class FloristView {
+public class TicketView {
 
 	/**
 	 * This class contains the menu's methods
@@ -18,7 +14,7 @@ public class FloristView {
 
 	private Teclado io;
 
-	public FloristView(Teclado io) {
+	public TicketView(Teclado io) {
 		this.io = io;
 	}
 
@@ -27,8 +23,8 @@ public class FloristView {
 		io.print("\n== MAIN MENU ==");
 		io.print("1. Add Product.");
 		io.print("2. Delete Product.");
-		io.print("3. Show Florist's stock.");
-		io.print("4. Show Florist's value.");
+		io.print("3. Show FloristÂ´s stock.");
+		io.print("4. Show FloristÂ´s value.");
 		io.print("5. Get current purchase receipt.");
 		io.print("6. Get old purchase receipts.");
 		io.print("7. Display total income.");
@@ -164,16 +160,20 @@ public class FloristView {
 		io.leerString("Please hit enter to continue");
 	}
 
+	public void displayOldPurchasesBanner() {
+		System.out.println("=== Old Purchases ===");
+	}
+
 	public void displayExitBanner() {
 		io.print("Bye bye!");
 	}
 
 	public void displayRemoveProductBanner() {
-		io.print("\n=== Delete Product ===");
+		io.print("-- Delete Product --");
 	}
 
 	public int getProductIdChoice() {
-		return io.leerInt("Please enter Product Id: ");
+		return io.leerInt("Please enter Product Id");
 	}
 
 	public void displayRemoveResult(Product productRecord) {
@@ -203,42 +203,6 @@ public class FloristView {
 
 	}
 
-	public void displayOldReceiptsBanner() {
-		io.print("\n-- Old Purchase Receipts --");
-
-	}
-
-	public LocalDate getTicketDateChoice() {
-		LocalDate dateTicket = null;
-		int year = io.leerInt("\nPlease enter Purchase's year: ", 2020, 2022);
-		int month = io.leerInt("\nPlease enter Purchase's month by number: ", 1, 12);
-		int day = io.leerInt("\nPlease enter Purchase's day: ", 1, 31);
-		dateTicket = LocalDate.of(year, month, day);
-		io.print("\nTicket's date: " + dateTicket);
-		return dateTicket;
-
-	}
-
-	public void displayOldTickets(List<Ticket> tickets, LocalDate date) {
-		for (Ticket ticket : tickets) {
-			if (ticket.getDate() == date) {
-				foundTicket();
-
-			} else {
-				notFoundTicket();
-			}
-		}
-
-	}
-
-	private void notFoundTicket() {
-		io.print("Not found ticket!");
-		
-	}
-
-	private void foundTicket() {
-		io.print("Ticket found!");
-
 	public void displayCurrentReceiptBanner() {
 		io.print("\n ########  CURRENT RECEIPT  ########");
 		io.print("\n ### nº :                        ###");
@@ -246,31 +210,19 @@ public class FloristView {
 		io.print("\n ###################################");
 	}
 
-	public int menuReceiptComplete() {
-		
-		io.print("\n== RECEIPT MENU ==");
-		io.print("1. Add Product");
-		io.print("2. Display Products");
-		io.print("3. Discard Product");
-		io.print("4. Confirm Receipt");
-		io.print("0. Exit.\n");
-
-		return io.leerInt("Please select one choice: ", 0, 4);
-	}
-	
-	
-	public int menuReceiptPartial() {
-		
-		io.print("\n== RECEIPT MENU ==");
-		io.print("1. Add Product");
-		io.print("2. Display Products");
-		io.print("0. Exit.\n");
-
-		return io.leerInt("Please select one choice: ", 0, 2);
-	}
-
-	public void addProductToReceiptBanner() {
-		io.print("---ADD PRODUCT---");
-
-	}
 }
+
+//	public static void showDeleteMenu() {
+//		System.out.println(" ");
+//		System.out.println(" DELETE MENU");
+//		System.out.println(" ");
+//		System.out.println("************************************************");
+//		System.out.println("*  Please, choose an option: ");
+//		System.out.println("*    1.-Delete Tree");
+//		System.out.println("*    2.-Delete Flower");
+//		System.out.println("*    3.-Delete Decoration");
+//		System.out.println("*    0.-Back to Principal ProductView");
+//		System.out.println("************************************************");
+//		System.out.println(" ");
+//		System.out.print(">> ");
+//	}

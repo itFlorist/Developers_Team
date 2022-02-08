@@ -1,0 +1,12 @@
+1::Orchid::16.75::Flower::0.0::Red::null
+2::Calendula::60.0::Flower::0.0::Azul::null
+3::Casa::90.0::Decoration::0.0::null::Plastico
+4::Roble::60.0::Tree::5.0::null::null
+5::Silla::85.0::Decoration::0.0::null::madera
+6::Oak::33.0::Tree::8.0::null::null
+9::Jar::6.0::Decoration::0.0::null::Wood
+10::Vase::11.99::Decoration::0.0::null::Glass
+11::Olive Tree::450.0::Tree::3.0::null::null
+12::Nogal::799.0::Tree::9.0::null::null
+14::Pine::300.0::Tree::7.0::null::null
+15::Acacia::250.0::Tree::4.0::null::null
