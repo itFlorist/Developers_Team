@@ -8,17 +8,26 @@ public class Florist {
 	private String name;
 	private List<Product> stock;
 	private float totalValue;
+	
+	private int idProduct;
+	private int idTicket;
 
 	public Florist() {
 
 	}
+	
+	public Florist(String name, int idProduct, int idTicket) {
+		this.name = name;
+		this.idProduct = idProduct;
+		this.idTicket = idTicket;
+	}
 
 	public Florist(String name, List<Product> stock, float totalValue) {
-		super();
 		this.name = name;
 		this.stock = stock;
 		this.totalValue = totalValue;
 	}
+	
 
 	public String getName() {
 		return name;
@@ -44,9 +53,25 @@ public class Florist {
 		this.totalValue = totalValue;
 	}
 
+	
+	public int getIdTicket() {
+		return idTicket;
+	}
+	public void setIdTicket(int idTicket) {
+		this.idTicket = idTicket;
+	}
+
+	public int getIdProduct() {
+		return idProduct;
+	}
+	public void setIdProduct(int idProduct) {
+		this.idProduct = idProduct;
+	}
+
 	@Override
 	public String toString() {
-		return "Florist [name=" + name + ", stock=" + stock + ", totalValue=" + totalValue + "]";
+		return "Florist [name=" + name + ", stock=" + stock + ", totalValue=" + totalValue + ", idProduct=" + idProduct
+				+ ", idTicket=" + idTicket + "]";
 	}
 
 }
