@@ -6,7 +6,7 @@ import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
 
-public class FloristView {
+public class TicketView {
 
 	/**
 	 * This class contains the menu's methods
@@ -14,7 +14,7 @@ public class FloristView {
 
 	private Teclado io;
 
-	public FloristView(Teclado io) {
+	public TicketView(Teclado io) {
 		this.io = io;
 	}
 
@@ -23,8 +23,8 @@ public class FloristView {
 		io.print("\n== MAIN MENU ==");
 		io.print("1. Add Product.");
 		io.print("2. Delete Product.");
-		io.print("3. Show Florist's stock.");
-		io.print("4. Show Florist's value.");
+		io.print("3. Show FloristÂ´s stock.");
+		io.print("4. Show FloristÂ´s value.");
 		io.print("5. Get current purchase receipt.");
 		io.print("6. Get old purchase receipts.");
 		io.print("7. Display total income.");
@@ -169,11 +169,11 @@ public class FloristView {
 	}
 
 	public void displayRemoveProductBanner() {
-		io.print("\n=== Delete Product ===");
+		io.print("-- Delete Product --");
 	}
 
 	public int getProductIdChoice() {
-		return io.leerInt("Please enter Product Id: ");
+		return io.leerInt("Please enter Product Id");
 	}
 
 	public void displayRemoveResult(Product productRecord) {
@@ -208,33 +208,6 @@ public class FloristView {
 		io.print("\n ### nº :                        ###");
 		io.print("\n ### Date :                      ###");
 		io.print("\n ###################################");
-	}
-
-	public int menuReceiptComplete() {
-		
-		io.print("\n== RECEIPT MENU ==");
-		io.print("1. Add Product");
-		io.print("2. Display Products");
-		io.print("3. Discard Product");
-		io.print("4. Confirm Receipt");
-		io.print("0. Exit.\n");
-
-		return io.leerInt("Please select one choice: ", 0, 4);
-	}
-	
-	
-	public int menuReceiptPartial() {
-		
-		io.print("\n== RECEIPT MENU ==");
-		io.print("1. Add Product");
-		io.print("2. Display Products");
-		io.print("0. Exit.\n");
-
-		return io.leerInt("Please select one choice: ", 0, 2);
-	}
-
-	public void addProductToReceiptBanner() {
-		io.print("---ADD PRODUCT---");
 	}
 
 }

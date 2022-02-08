@@ -4,18 +4,15 @@ import java.util.List;
 
 import com.sprint3.dao.FloristDao;
 import com.sprint3.dao.FloristDaoException;
-import com.sprint3.dao.FloristManagerDao;
-import com.sprint3.dao.FloristManagerDaoImpl;
 import com.sprint3.dto.Product;
-import com.sprint3.dto.Ticket;
 import com.sprint3.gui.FloristView;
 
-public class FloristController {
+public class TicketController {
 
 	private FloristView floristView;
 	private FloristDao floristDao;
 
-	public FloristController(FloristView floristView, FloristDao floristDao) {
+	public TicketController(FloristView floristView, FloristDao floristDao) {
 		this.floristView = floristView;
 		this.floristDao = floristDao;
 	}
@@ -101,7 +98,7 @@ public class FloristController {
 		floristView.displayRemoveProductBanner();
 		int id = floristView.getProductIdChoice();
 		Product removedProduct = floristDao.removeProduct(id);
-		//System.out.println(removedProduct);
+		System.out.println(removedProduct);
 		floristView.displayRemoveResult(removedProduct);
 	}
 	
@@ -117,83 +114,39 @@ public class FloristController {
 		floristView.displayStockValue(value);
 	}
 
-	private void showCurrentPurchaseReceipt() throws FloristDaoException {
+	private void showCurrentPurchaseReceipt() {
 		floristView.displayCurrentReceiptBanner();
-		//Ticket currentTicket = null;
+		
+		
 		
 		boolean keepGoing = true;
-		boolean receiptIsEmpty = true;
-		int menuSelection = -1;
-		
-		do {
-			
-			if(receiptIsEmpty) {
-				menuSelection = getReceiptMenuSelectionP();
-			}else {
-				menuSelection = getReceiptMenuSelectionC();
-			}
-	
+		int menuSelection;
+		while (keepGoing) {
+			menuSelection = getAddMenuSelection();
+
 			switch (menuSelection) {
 			case 1:
-				addProductToReceipt();
-				receiptIsEmpty = false;
+				addProduct("Tree");
 				break;
 			case 2:
-				showFloristStock();
+				addProduct("Flower");
 				break;
 			case 3:
-				//discardProduct();
-				break;	
-			case 4:
-				//confirmReceipt();
-				receiptIsEmpty = true;
-				break;	
+				addProduct("Decoration");
+				break;
 			case 0:
 				keepGoing = false;
 				break;
 			default:
 				unknownCommand();
 			}
-		}while(keepGoing);
+		}
 		
 		floristView.displayRemoveProductBanner();
 		int id = floristView.getProductIdChoice();
 		Product removedProduct = floristDao.removeProduct(id);
 		System.out.println(removedProduct);
 		floristView.displayRemoveResult(removedProduct);
-		
-	}
-		
-	private void addProductToReceipt() {
-		floristView.addProductToReceiptBanner();
-		int id = floristView.getProductIdChoice();
-		FloristManagerDao.getiD();
-			Floristeria floristeria(name, idProd, idTicket);
-			get-> id;
-			id = id++;
-			setter <- id;
-			
-		
-		/*comprobar que id existe ---service
-//		if(currentTicket == null) {
-//			currentTicket = new Ticket();
-//		}
-		//si idExiste{
-		 * -añadir producto a ticket
-		 * -borrar producto de stock
-		 * -mensaje transaccion exitosa
-		 * }else{
-		 * imprimir error en view
-		 * 
-		*/
-	}
-
-	private int getReceiptMenuSelectionC() {
-		return floristView.menuReceiptComplete();
-	}
-	
-	private int getReceiptMenuSelectionP() {
-		return floristView.menuReceiptPartial();
 	}
 
 	private void showOldPurchaseReceipts() {

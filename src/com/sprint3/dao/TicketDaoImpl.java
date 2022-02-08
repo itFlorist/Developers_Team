@@ -17,7 +17,7 @@ import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Tree;
 
-public class FloristDaoImpl implements FloristDao {
+public class TicketDaoImpl implements FloristDao {
 
 	/*
 	 * private void showFloristValue(List<Product> stock) {} private void
@@ -34,8 +34,8 @@ public class FloristDaoImpl implements FloristDao {
 
 	private final String DELIMITER = "::";
 
-	public FloristDaoImpl(String file) {
-		FLORIST_FILE = file;
+	public TicketDaoImpl() {
+		FLORIST_FILE = "florist.txt";
 		TICKET_FILE = "ticket.txt";
 	}
 
@@ -103,7 +103,7 @@ public class FloristDaoImpl implements FloristDao {
 		// iD::name::price::class::height::color::material
 		//
 		// This line is then split at the DELIMITER (::), leaving an array of Strings,
-		// stored as productTokens, which should look like this:
+		// stored as dvdTokens, which should look like this:
 		// ___________________________________________
 		// | | | | | | | |
 		// |00001|Orchid|21.95|Flower|NULL|White|NULL|
