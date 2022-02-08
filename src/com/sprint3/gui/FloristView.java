@@ -169,11 +169,11 @@ public class FloristView {
 	}
 
 	public void displayRemoveProductBanner() {
-		io.print("-- Delete Product --");
+		io.print("\n=== Delete Product ===");
 	}
 
 	public int getProductIdChoice() {
-		return io.leerInt("Please enter Product Id");
+		return io.leerInt("Please enter Product Id: ");
 	}
 
 	public void displayRemoveResult(Product productRecord) {

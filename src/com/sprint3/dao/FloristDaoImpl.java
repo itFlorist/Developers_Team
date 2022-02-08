@@ -34,8 +34,8 @@ public class FloristDaoImpl implements FloristDao {
 
 	private final String DELIMITER = "::";
 
-	public FloristDaoImpl() {
-		FLORIST_FILE = "florist.txt";
+	public FloristDaoImpl(String file) {
+		FLORIST_FILE = file;
 		TICKET_FILE = "ticket.txt";
 	}
 
@@ -103,7 +103,7 @@ public class FloristDaoImpl implements FloristDao {
 		// iD::name::price::class::height::color::material
 		//
 		// This line is then split at the DELIMITER (::), leaving an array of Strings,
-		// stored as dvdTokens, which should look like this:
+		// stored as productTokens, which should look like this:
 		// ___________________________________________
 		// | | | | | | | |
 		// |00001|Orchid|21.95|Flower|NULL|White|NULL|

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.sprint3.dao.FloristDao;
 import com.sprint3.dao.FloristDaoException;
+import com.sprint3.dao.FloristManagerDao;
+import com.sprint3.dao.FloristManagerDaoImpl;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Ticket;
 import com.sprint3.gui.FloristView;
@@ -99,7 +101,7 @@ public class FloristController {
 		floristView.displayRemoveProductBanner();
 		int id = floristView.getProductIdChoice();
 		Product removedProduct = floristDao.removeProduct(id);
-		System.out.println(removedProduct);
+		//System.out.println(removedProduct);
 		floristView.displayRemoveResult(removedProduct);
 	}
 	
@@ -165,6 +167,13 @@ public class FloristController {
 	private void addProductToReceipt() {
 		floristView.addProductToReceiptBanner();
 		int id = floristView.getProductIdChoice();
+		FloristManagerDao.getiD();
+			Floristeria floristeria(name, idProd, idTicket);
+			get-> id;
+			id = id++;
+			setter <- id;
+			
+		
 		/*comprobar que id existe ---service
 //		if(currentTicket == null) {
 //			currentTicket = new Ticket();
