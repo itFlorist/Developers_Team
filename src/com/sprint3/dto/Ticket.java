@@ -2,13 +2,14 @@ package com.sprint3.dto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Ticket {
 
 	private int ticketId;
 	private LocalDate date;
 	private float totalPurchasePrice;
-  private List<Product> purchase;
+	private List<Product> purchase;
 
 	private int productId;
 	private String productName;
@@ -18,9 +19,10 @@ public class Ticket {
 	public Ticket() {
 
 	}
-  public Ticket(int ticketId) {
+
+	public Ticket(int ticketId) {
 		this.ticketId = ticketId;
-		this.date = new Date(); 
+		this.date = new Date();
 	}
 
 	public Ticket(int ticketId, LocalDateTime date, float totalPurchasePrice, int productId, String productName,
@@ -38,7 +40,6 @@ public class Ticket {
 	public int getTicketId() {
 		return ticketId;
 	}
-  
 
 	public void setTicketId(int ticketId) {
 		this.ticketId = ticketId;
@@ -91,4 +92,3 @@ public class Ticket {
 				+ ", productFeature=" + productFeature + "]";
 	}
 }
-

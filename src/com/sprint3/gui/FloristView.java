@@ -1,7 +1,6 @@
 package com.sprint3.gui;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import com.sprint3.dto.Decoration;
@@ -233,11 +232,13 @@ public class FloristView {
 
 	private void notFoundTicket() {
 		io.print("Not found ticket!");
-		
+
 	}
 
 	private void foundTicket() {
 		io.print("Ticket found!");
+
+	}
 
 	public void displayCurrentReceiptBanner() {
 		io.print("\n ########  CURRENT RECEIPT  ########");
@@ -247,7 +248,7 @@ public class FloristView {
 	}
 
 	public int menuReceiptComplete() {
-		
+
 		io.print("\n== RECEIPT MENU ==");
 		io.print("1. Add Product");
 		io.print("2. Display Products");
@@ -257,10 +258,9 @@ public class FloristView {
 
 		return io.leerInt("Please select one choice: ", 0, 4);
 	}
-	
-	
+
 	public int menuReceiptPartial() {
-		
+
 		io.print("\n== RECEIPT MENU ==");
 		io.print("1. Add Product");
 		io.print("2. Display Products");
