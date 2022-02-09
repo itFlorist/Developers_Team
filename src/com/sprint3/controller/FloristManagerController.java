@@ -113,7 +113,7 @@ public class FloristManagerController {
 		boolean existsName = floristManagerDao.checkName(floristName);
 		
 		if(existsName) {
-			floristName += "Florist.txt";
+			floristName += "_Florist.txt";
 			
 			File file = new File(floristName);  
 			boolean result;  

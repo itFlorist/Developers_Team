@@ -238,6 +238,7 @@ public class FloristView {
 
 	private void foundTicket() {
 		io.print("Ticket found!");
+	}
 
 	public void displayCurrentReceiptBanner() {
 		io.print("\n ########  CURRENT RECEIPT  ########");

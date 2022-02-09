@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import com.sprint3.dto.Decoration;
+import com.sprint3.dto.Florist;
 import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Ticket;
@@ -34,7 +35,6 @@ public class FloristDaoImpl implements FloristDao {
 	private final String FLORIST_FILE;
 	private final String TICKET_FILE;
 
-	private final String TICKET_FILE;
 
 	private final String DELIMITER = "::";
 
@@ -45,6 +45,20 @@ public class FloristDaoImpl implements FloristDao {
 
 	public void addProductType(int id, Product product) throws FloristDaoException {
 		loadStock();
+		//----------------------------------------------------
+		FloristManagerDaoImpl fmdi = new FloristManagerDaoImpl("floristList.txt");
+		String currentFlorist = FLORIST_FILE.split("_")[0];
+		System.out.println(currentFlorist);
+		System.out.println("id pre: " + id);
+		try {
+			id = fmdi.getProductId(currentFlorist);
+		} catch (FloristManagerDaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("id post: " + id);
+		product.setId(id);
+		//---------------------------------------------
 		stock.put(id, product);
 		writeStock();
 	}
