@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import com.sprint3.dto.Decoration;
+import com.sprint3.dto.Florist;
 import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Ticket;
@@ -32,8 +33,6 @@ public class FloristDaoImpl implements FloristDao {
 	private Map<Integer, Ticket> tickets = new HashMap<>();
 
 	private final String FLORIST_FILE;
-	private final String TICKET_FILE;
-
 	private final String TICKET_FILE;
 
 	private final String DELIMITER = "::";
@@ -212,15 +211,21 @@ public class FloristDaoImpl implements FloristDao {
 	}
 
 	public List<Ticket> getAllTickets() throws FloristDaoException {
-//		loadTicket();
+		loadTicket();
+
 		List<Ticket> tickets = getTickets();
 		return tickets;
 	}
 
-	public List<Ticket> getTickets() throws FloristDaoException {
+	private List<Ticket> getTickets() throws FloristDaoException {
 		loadTicket();
 		return new ArrayList<Ticket>(tickets.values());
 	}
+
+//	public List<Ticket> getTickets() throws FloristDaoException {
+//		loadTicket();
+//		return new ArrayList<Ticket>(tickets.values());
+//	}
 
 	private void loadTicket() throws FloristDaoException {
 		Scanner scanner;
@@ -242,7 +247,7 @@ public class FloristDaoImpl implements FloristDao {
 			currentLine = scanner.nextLine();
 			// unmarshall the line into a Ticket
 			currentTicket = unmarshallTicket(currentLine);
-
+			System.out.println(currentTicket);
 			// The Ticket id is used as a map key to put the currentTicket into the map
 			tickets.put(currentTicket.getTicketId(), currentTicket);
 		}
@@ -278,15 +283,15 @@ public class FloristDaoImpl implements FloristDao {
 		String ticketId = productTokens[0];
 		String date = productTokens[1];
 		String totalPurchasePrice = productTokens[2];
-		String productId = productTokens[3];
-		String productName = productTokens[4];
-		String productPrice = productTokens[5];
-		String productFeature = productTokens[6];
+//		String productId = productTokens[3];
+//		String productName = productTokens[4];
+//		String productPrice = productTokens[5];
+//		String productFeature = productTokens[6];
 
 		// A new Project object is created using the id to satisfy the
 		// requirements of the Project constructor
 		int id = Integer.parseInt(ticketId);
-		Ticket ticketFromFile = null; // = new Ticket(id);
+		Ticket ticketFromFile = new Ticket(id); // = new Ticket(id);
 
 		return ticketFromFile;
 	}
@@ -294,7 +299,7 @@ public class FloristDaoImpl implements FloristDao {
 	@Override
 	public List<Ticket> getOldTickets(List<Ticket> tickets, LocalDate date) throws FloristDaoException {
 		loadTicket();
-		
+
 		return null;
 	}
 

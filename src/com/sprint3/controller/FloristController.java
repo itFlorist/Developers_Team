@@ -172,11 +172,11 @@ public class FloristController {
 	private void addProductToReceipt() {
 		floristView.addProductToReceiptBanner();
 		int id = floristView.getProductIdChoice();
-		FloristManagerDao.getiD();
-			Floristeria floristeria(name, idProd, idTicket);
-			get-> id;
-			id = id++;
-			setter <- id;
+//		FloristManagerDao.getiD();
+//			Floristeria floristeria(name, idProd, idTicket);
+//			get-> id;
+//			id = id++;
+//			setter <- id;
 			
 		
 		/*comprobar que id existe ---service
@@ -202,8 +202,10 @@ public class FloristController {
 	}
 
 	private void showOldPurchaseReceipts() throws FloristDaoException {
-		floristView.displayOldReceiptsBanner();
+		floristView.displayTicketsBanner();
 		List<Ticket> tickets = floristDao.getAllTickets();	
+		floristView.displayAllTickets(tickets);
+		floristView.displayOldReceiptsBanner();		
 		LocalDate date = floristView.getTicketDateChoice();
 		tickets = floristDao.getOldTickets(tickets, date);
 		floristView.displayOldTickets(tickets, date);
