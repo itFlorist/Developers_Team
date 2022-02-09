@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="3c80fceb-3ddd-4093-b7c3-071fb4c05871" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/com/sprint3/controller/FloristController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sprint3/controller/FloristController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sprint3/controller/FloristManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sprint3/controller/FloristManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sprint3/dao/FloristDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sprint3/dao/FloristDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sprint3/dao/TicketDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sprint3/dao/TicketDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sprint3/dto/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sprint3/dto/Ticket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sprint3/gui/FloristView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sprint3/gui/FloristView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sprint3/gui/TicketView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sprint3/gui/TicketView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ticket.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +27,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Entregas/S4_Spring" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

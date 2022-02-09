@@ -1,7 +1,6 @@
 package com.sprint3.gui;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import com.sprint3.dto.Decoration;
@@ -208,6 +207,28 @@ public class FloristView {
 
 	}
 
+	public void displayAllTickets(List<Ticket> tickets) {
+
+		String stockHeadings = String.format("%2s | %15s | %12s", "TICKETID", "TICKETDATE", "TOTALPRICE");
+		io.print(" ");
+		io.print(stockHeadings);
+		io.print(
+				"-----------------------------------------------------------------------------------------------------------------");
+		for (Ticket ticket : tickets) {
+			String ticketStock = String.format("%2s | %15s | %12s", ticket.getTicketId(), ticket.getDate(),
+					ticket.getTotalPurchasePrice());
+			io.print(ticketStock);
+		}
+		io.print(
+				"-----------------------------------------------------------------------------------------------------------------");
+		io.leerString("Please hit enter to continue");
+
+//		for (Ticket ticket : tickets) {
+//			io.print(ticket.toString());
+//			io.print("Showing all tickets..."); //Provisional para visualizar
+//		}
+	}
+
 	public LocalDate getTicketDateChoice() {
 		LocalDate dateTicket = null;
 		int year = io.leerInt("\nPlease enter Purchase's year: ", 2020, 2022);
@@ -219,21 +240,41 @@ public class FloristView {
 
 	}
 
-	public void displayOldTickets(List<Ticket> tickets, LocalDate date) {
-		for (Ticket ticket : tickets) {
-			if (ticket.getDate() == date) {
-				foundTicket();
+	public void displayOldTickets(List<Ticket> tickets, LocalDate dateTicket) {
 
-			} else {
-				notFoundTicket();
+		String stockHeadings = String.format("%2s | %15s | %12s", "TICKETID", "TICKETDATE", "TOTALPRICE");
+		io.print(" ");
+		io.print(stockHeadings);
+		io.print(
+				"-----------------------------------------------------------------------------------------------------------------");
+		for (Ticket ticket : tickets) {
+			if (ticket.getDate() == dateTicket) {
+				foundTicket();
+				String ticketStock = String.format("%2s | %15s | %12s", ticket.getTicketId(), ticket.getDate(),
+						ticket.getTotalPurchasePrice());
+				io.print(ticketStock);
 			}
 		}
+		io.print(
+				"-----------------------------------------------------------------------------------------------------------------");
+		io.leerString("Please hit enter to continue");
+
+//		for (Ticket ticket : tickets) {
+//			if (ticket.getDate() == dateTicket) {
+//				foundTicket();
+//				io.print(ticket.toString());
+//
+//			} else {
+//				notFoundTicket();
+//				io.print("\nNo tickets for this date: " + dateTicket);
+//			}
+//		}
 
 	}
 
 	private void notFoundTicket() {
 		io.print("Not found ticket!");
-		
+
 	}
 
 	private void foundTicket() {
@@ -248,7 +289,7 @@ public class FloristView {
 	}
 
 	public int menuReceiptComplete() {
-		
+
 		io.print("\n== RECEIPT MENU ==");
 		io.print("1. Add Product");
 		io.print("2. Display Products");
@@ -258,10 +299,9 @@ public class FloristView {
 
 		return io.leerInt("Please select one choice: ", 0, 4);
 	}
-	
-	
+
 	public int menuReceiptPartial() {
-		
+
 		io.print("\n== RECEIPT MENU ==");
 		io.print("1. Add Product");
 		io.print("2. Display Products");
@@ -272,6 +312,11 @@ public class FloristView {
 
 	public void addProductToReceiptBanner() {
 		io.print("---ADD PRODUCT---");
+
+	}
+
+	public void displayTicketsBanner() {
+		io.print("\n--- SHOW TICKETS ---");
 
 	}
 }
