@@ -6,6 +6,15 @@ id FloristList??
 check nombre Florist repetido --> donde?
 
 
+
+
+
+//////////////////////////////
+FloristDaoImpl --> TicketDaoImpl
+limpiar FloristDao de metodos "Ticket"
+//////////////////////////////
+
+
 SERVICE
 crides a DAO desde Controller
 comprobacions 

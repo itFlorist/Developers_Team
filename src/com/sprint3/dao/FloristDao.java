@@ -18,8 +18,4 @@ public interface FloristDao {
 
 	public float getFloristValue() throws FloristDaoException;
 
-	List<Ticket> getAllTickets() throws FloristDaoException;
-
-	List<Ticket> getOldTickets(List<Ticket> tickets, LocalDate date) throws FloristDaoException;
-
 }

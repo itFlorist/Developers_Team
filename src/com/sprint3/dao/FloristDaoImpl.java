@@ -225,23 +225,5 @@ public class FloristDaoImpl implements FloristDao {
 		return products;
 	}
 
-	public List<Ticket> getAllTickets() throws FloristDaoException {
-		loadTicket();
-
-		List<Ticket> tickets = getTickets();
-		return tickets;
-	}
-
-	private List<Ticket> getTickets() throws FloristDaoException {
-		loadTicket();
-		return new ArrayList<Ticket>(tickets.values());
-	}
-  
-	@Override
-	public List<Ticket> getOldTickets(List<Ticket> tickets, LocalDate date) throws FloristDaoException {
-		loadTicket();
-
-		return null;
-	}
 
 }
