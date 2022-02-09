@@ -5,18 +5,24 @@ import java.util.List;
 
 import com.sprint3.dao.FloristDao;
 import com.sprint3.dao.FloristDaoException;
+import com.sprint3.dao.TicketDao;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Ticket;
 import com.sprint3.gui.FloristView;
+import com.sprint3.gui.TicketView;
 
 public class FloristController {
 
 	private FloristView floristView;
+	private TicketView ticketView;
 	private FloristDao floristDao;
+	private TicketDao ticketDao;
 
-	public FloristController(FloristView floristView, FloristDao floristDao) {
+	public FloristController(FloristView floristView, TicketView ticketView, FloristDao floristDao, TicketDao ticketDao) {
 		this.floristView = floristView;
+		this.ticketView = ticketView;
 		this.floristDao = floristDao;
+		this.ticketDao = ticketDao;
 	}
 
 	public void runProduct() {
@@ -196,18 +202,18 @@ public class FloristController {
 	private void showOldPurchaseReceipts() throws FloristDaoException {
 
 		floristView.displayTicketsBanner();
-		List<Ticket> tickets = floristDao.getAllTickets();	
+		List<Ticket> tickets = ticketDao.getAllTickets();	
 		floristView.displayAllTickets(tickets);
 		floristView.displayOldReceiptsBanner();		
 		LocalDate date = floristView.getTicketDateChoice();
-		tickets = floristDao.getOldTickets(tickets, date);
+		tickets = ticketDao.getOldTickets(tickets, date);
 		floristView.displayOldTickets(tickets, date);
 	}
 
 	/*
 	 * Alb
 	 */
-	private void totalIncome() {
+	private void totalIncome() throws FloristDaoException {
 		float income = ticketDao.getTotalIncome();
 		ticketView.displayTotalIncome(income);
 

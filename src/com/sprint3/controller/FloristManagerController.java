@@ -8,9 +8,12 @@ import com.sprint3.dao.FloristDao;
 import com.sprint3.dao.FloristDaoImpl;
 import com.sprint3.dao.FloristManagerDao;
 import com.sprint3.dao.FloristManagerDaoImpl;
+import com.sprint3.dao.TicketDao;
+import com.sprint3.dao.TicketDaoImpl;
 import com.sprint3.dto.Florist;
 import com.sprint3.gui.FloristManagerView;
 import com.sprint3.gui.FloristView;
+import com.sprint3.gui.TicketView;
 
 public class FloristManagerController {
 
@@ -127,7 +130,9 @@ public class FloristManagerController {
 
 		FloristView floristView = new FloristView(floristManagerView.getIo());
 		FloristDao floristDao = new FloristDaoImpl(floristName);
-		FloristController floristController = new FloristController(floristView, floristDao);
+		TicketView ticketView = new TicketView(floristManagerView.getIo());
+		TicketDao ticketDao = new TicketDaoImpl();
+		FloristController floristController = new FloristController(floristView, ticketView, floristDao, ticketDao);
 //		FloristController fc = new FloristController(new FloristView(new Teclado()), new FloristDaoImpl());
 		floristController.runProduct();
 	}

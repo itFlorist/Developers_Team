@@ -3,7 +3,10 @@ package com.sprint3.dao;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -98,6 +101,25 @@ public class TicketDaoImpl implements TicketDao {
 		Ticket ticketFromFile = new Ticket(id);
 
 		return ticketFromFile;
+	}
+	
+	public List<Ticket> getAllTickets() throws FloristDaoException {
+		loadTicket();
+
+		List<Ticket> tickets = getTickets();
+		return tickets;
+	}
+
+	public List<Ticket> getTickets() throws FloristDaoException {
+		loadTicket();
+		return new ArrayList<Ticket>(tickets.values());
+	}
+  
+
+	public List<Ticket> getOldTickets(List<Ticket> tickets, LocalDate date) throws FloristDaoException {
+		loadTicket();
+
+		return null;
 	}
 
 }
