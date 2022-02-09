@@ -41,7 +41,20 @@ public class FloristManagerDaoImpl implements FloristManagerDao {
 		writeFlorist();
 		return removedFlorist;
 	}
-	
+	//------------------------------------------------------------------------------
+	public int getProductId(String floristName) throws FloristManagerDaoException {
+		loadFlorist();
+		int id;
+		
+		Florist fl = floristArchive.get(floristName);
+		id = fl.getIdProduct();
+		fl.setIdProduct(id + 1);
+		writeFlorist();
+
+		return id;
+	}
+	//------------------------------------------------------------------------------
+
 	
 	public boolean checkName(String floristName) throws FloristManagerDaoException{
 		List<Florist> florists = getAllFlorists(); 

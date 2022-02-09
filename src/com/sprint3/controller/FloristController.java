@@ -171,7 +171,7 @@ public class FloristController {
 //			get-> id;
 //			id = id++;
 //			setter <- id;
-    
+
 		/*comprobar que id existe ---service
 //		if(currentTicket == null) {
 //			currentTicket = new Ticket();
@@ -182,15 +182,7 @@ public class FloristController {
 		 * -mensaje transaccion exitosa
 		 * }else{
 		 * imprimir error en view
-
-		/*
-		 * comprobar que id existe ---service // if(currentTicket == null) { //
-		 * currentTicket = new Ticket(); // } //si idExiste{ -añadir producto a ticket
-		 * -borrar producto de stock -mensaje transaccion exitosa }else{ imprimir error
-		 * en view
-
-		 * 
-		 */
+     */
 	}
 
 	private int getReceiptMenuSelectionC() {

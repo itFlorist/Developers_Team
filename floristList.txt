@@ -1,2 +1,2 @@
-MIAU::0::0
+MIAU::6::0
 FLOWERPOWER::1::1

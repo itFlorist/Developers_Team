@@ -8,9 +8,10 @@ import java.util.List;
 public class Ticket {
 
 	private int ticketId;
-	private LocalDate date;
+	private Date date;
 	private float totalPurchasePrice;
 	private List<Product> purchase;
+  
 	private int productId;
 	private String productName;
 	private float productPrice;

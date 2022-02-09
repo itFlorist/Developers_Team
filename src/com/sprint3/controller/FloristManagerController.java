@@ -106,12 +106,12 @@ public class FloristManagerController {
 		String floristName = floristManagerView.getFloristName();
 		boolean existsName = floristManagerDao.checkName(floristName);
 
-		if (existsName) {
-			floristName += "Florist.txt";
-
-			File file = new File(floristName);
-			boolean result;
-			try {
+		if(existsName) {
+			floristName += "_Florist.txt";
+			
+			File file = new File(floristName);  
+			boolean result;  
+			try{  
 				result = file.createNewFile();
 				if (result) {
 					System.out.println("file created " + file.getCanonicalPath());
