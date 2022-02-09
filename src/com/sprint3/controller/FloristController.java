@@ -171,12 +171,24 @@ public class FloristController {
 //			get-> id;
 //			id = id++;
 //			setter <- id;
+    
+		/*comprobar que id existe ---service
+//		if(currentTicket == null) {
+//			currentTicket = new Ticket();
+//		}
+		//si idExiste{
+		 * -añadir producto a ticket
+		 * -borrar producto de stock
+		 * -mensaje transaccion exitosa
+		 * }else{
+		 * imprimir error en view
 
 		/*
 		 * comprobar que id existe ---service // if(currentTicket == null) { //
 		 * currentTicket = new Ticket(); // } //si idExiste{ -añadir producto a ticket
 		 * -borrar producto de stock -mensaje transaccion exitosa }else{ imprimir error
 		 * en view
+
 		 * 
 		 */
 	}
@@ -190,8 +202,11 @@ public class FloristController {
 	}
 
 	private void showOldPurchaseReceipts() throws FloristDaoException {
-		floristView.displayOldReceiptsBanner();
-		List<Ticket> tickets = floristDao.getAllTickets();
+
+		floristView.displayTicketsBanner();
+		List<Ticket> tickets = floristDao.getAllTickets();	
+		floristView.displayAllTickets(tickets);
+		floristView.displayOldReceiptsBanner();		
 		LocalDate date = floristView.getTicketDateChoice();
 		tickets = floristDao.getOldTickets(tickets, date);
 		floristView.displayOldTickets(tickets, date);

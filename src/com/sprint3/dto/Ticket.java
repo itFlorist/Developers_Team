@@ -2,6 +2,7 @@ package com.sprint3.dto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class Ticket {
@@ -10,7 +11,6 @@ public class Ticket {
 	private LocalDate date;
 	private float totalPurchasePrice;
 	private List<Product> purchase;
-
 	private int productId;
 	private String productName;
 	private float productPrice;
@@ -22,7 +22,15 @@ public class Ticket {
 
 	public Ticket(int ticketId) {
 		this.ticketId = ticketId;
-		this.date = new Date();
+		this.date = LocalDate.now();
+	}
+
+	public Ticket(int ticketId, LocalDate date, float totalPurchasePrice) {
+		super();
+		this.ticketId = ticketId;
+		this.date = date;
+		this.totalPurchasePrice = totalPurchasePrice;
+
 	}
 
 	public Ticket(int ticketId, LocalDateTime date, float totalPurchasePrice, int productId, String productName,

@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import com.sprint3.dto.Decoration;
+import com.sprint3.dto.Florist;
 import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Ticket;
@@ -211,16 +212,17 @@ public class FloristDaoImpl implements FloristDao {
 	}
 
 	public List<Ticket> getAllTickets() throws FloristDaoException {
-//		loadTicket();
+		loadTicket();
+
 		List<Ticket> tickets = getTickets();
 		return tickets;
 	}
 
-	public List<Ticket> getTickets() throws FloristDaoException {
+	private List<Ticket> getTickets() throws FloristDaoException {
 		loadTicket();
 		return new ArrayList<Ticket>(tickets.values());
 	}
-
+  
 	@Override
 	public List<Ticket> getOldTickets(List<Ticket> tickets, LocalDate date) throws FloristDaoException {
 		loadTicket();
