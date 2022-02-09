@@ -1,7 +1,6 @@
 package com.sprint3.gui;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import com.sprint3.dto.Decoration;
@@ -280,6 +279,8 @@ public class FloristView {
 
 	private void foundTicket() {
 		io.print("Ticket found!");
+	}
+
 	}
 
 	public void displayCurrentReceiptBanner() {

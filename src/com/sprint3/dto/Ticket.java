@@ -10,7 +10,6 @@ public class Ticket {
 	private int ticketId;
 	private LocalDate date;
 	private float totalPurchasePrice;
-
 	private List<Product> purchase;
 	private int productId;
 	private String productName;
@@ -31,6 +30,7 @@ public class Ticket {
 		this.ticketId = ticketId;
 		this.date = date;
 		this.totalPurchasePrice = totalPurchasePrice;
+
 	}
 
 	public Ticket(int ticketId, LocalDateTime date, float totalPurchasePrice, int productId, String productName,
