@@ -15,6 +15,4 @@ public interface FloristManagerDao {
 	public List<Florist> getAllFlorists() throws FloristManagerDaoException;
 
 
-
-	
 }

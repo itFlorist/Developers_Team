@@ -10,7 +10,6 @@ public abstract class Product {
 	}
 
 	public Product(int id) {
-		// this.id = Product.id++;
 		this.id = id;
 	}
 
@@ -43,8 +42,6 @@ public abstract class Product {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-
-	// public abstract Product getStock();
 
 	public abstract float getHeight();
 

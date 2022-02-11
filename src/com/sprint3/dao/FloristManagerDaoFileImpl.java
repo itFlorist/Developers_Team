@@ -15,7 +15,7 @@ import java.util.Scanner;
 import com.sprint3.dto.Florist;
 import com.sprint3.dto.Product;
 
-public class FloristManagerDaoImpl implements FloristManagerDao {
+public class FloristManagerDaoFileImpl implements FloristManagerDao {
 
 	private Map<String, Florist> floristArchive = new HashMap<>();
 
@@ -24,7 +24,7 @@ public class FloristManagerDaoImpl implements FloristManagerDao {
 
 	private final String DELIMITER = "::";
 
-	public FloristManagerDaoImpl(String file) {
+	public FloristManagerDaoFileImpl(String file) {
 		FLORIST_ARCHIVE_FILE = file;
 	}
 	
@@ -65,6 +65,11 @@ public class FloristManagerDaoImpl implements FloristManagerDao {
 			}
 		}
 		return false;
+	}
+	
+	public List<Florist> getAllFlorists() throws FloristManagerDaoException {
+		loadFlorist();
+		return new ArrayList<Florist>(floristArchive.values());
 	}
 	
 	
@@ -185,8 +190,4 @@ public class FloristManagerDaoImpl implements FloristManagerDao {
 			out.close();
 		}
 		
-		public List<Florist> getAllFlorists() throws FloristManagerDaoException {
-			loadFlorist();
-			return new ArrayList<Florist>(floristArchive.values());
-		}
 }

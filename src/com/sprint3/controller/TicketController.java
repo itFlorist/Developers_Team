@@ -17,7 +17,6 @@ public class TicketController {
 	private TicketDao ticketDao;
 
 	public TicketController(TicketView ticketView, TicketDao ticketDao) {
-		super();
 		this.ticketView = ticketView;
 		this.ticketDao = ticketDao;
 	}
@@ -34,7 +33,7 @@ public class TicketController {
 				showAllTickets();
 				break;
 			case 2:
-				shortByDate();
+				showByDate();
 				break;
 			case 0:
 				keepGoing = false;
@@ -52,12 +51,11 @@ public class TicketController {
 		ticketView.displayAllTickets(tickets);
 	}
 
-	private void shortByDate() throws FloristDaoException {
+	private void showByDate() throws FloristDaoException {
 
 		ticketView.displayTicketsByDateBanner();
 		LocalDate dateTicket = ticketView.getTicketDateChoice();
 		List<Ticket> tickets = ticketDao.getAllTickets();
-//		tickets = ticketDao.getOldTickets(tickets, dateTicket);
 		ticketView.displayTicketsByDate(tickets, dateTicket);
 	}
 
@@ -194,11 +192,6 @@ public class TicketController {
 //			}
 //		}
 //
-//		floristView.displayRemoveProductBanner();
-//		int id = floristView.getProductIdChoice();
-//		Product removedProduct = floristDao.removeProduct(id);
-//		System.out.println(removedProduct);
-//		floristView.displayRemoveResult(removedProduct);
 //	}
 //
 //	private void showOldPurchaseReceipts() {

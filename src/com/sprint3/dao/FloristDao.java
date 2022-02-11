@@ -8,13 +8,11 @@ import com.sprint3.dto.Ticket;
 
 public interface FloristDao {
 
-	List<Product> getAllStock() throws FloristDaoException;
+	public List<Product> getAllStock() throws FloristDaoException;
+	
+	void addProductType(int id, Product product) throws FloristDaoException;
 
 	Product removeProduct(int id) throws FloristDaoException;
-
-	public List<Product> getAllProducts() throws FloristDaoException;
-
-	void addProductType(int id, Product product) throws FloristDaoException;
 
 	public float getFloristValue() throws FloristDaoException;
 	

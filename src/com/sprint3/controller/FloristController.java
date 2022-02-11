@@ -15,16 +15,13 @@ import com.sprint3.controller.TicketController;
 public class FloristController {
 
 	private FloristView floristView;
-	private TicketView ticketView;
 	private FloristDao floristDao;
-	private TicketDao ticketDao;
 	private TicketController ticketController;
 
-	public FloristController(FloristView floristView, TicketView ticketView, FloristDao floristDao, TicketDao ticketDao, TicketController ticketController) {
+
+	public FloristController(FloristView floristView, FloristDao floristDao, TicketController ticketController) {
 		this.floristView = floristView;
-		this.ticketView = ticketView;
 		this.floristDao = floristDao;
-		this.ticketDao = ticketDao;
 		this.ticketController = ticketController;
 	}
 
@@ -63,7 +60,7 @@ public class FloristController {
 					keepGoing = false;
 					break;
 				default:
-					// unknownCommand();
+					unknownCommand();
 				}
 			}
 			exitMessage();
@@ -109,7 +106,6 @@ public class FloristController {
 		floristView.displayRemoveProductBanner();
 		int id = floristView.getProductIdChoice();
 		Product removedProduct = floristDao.removeProduct(id);
-		// System.out.println(removedProduct);
 		floristView.displayRemoveResult(removedProduct);
 	}
 
@@ -175,7 +171,7 @@ public class FloristController {
 			floristView.displayErrorMessage("Requested product is not available at stock");
 			return;
 		} else {
-//			 * -añadir producto a ticket
+			 * -añadir producto a ticket
 //			 * -borrar producto de stock
 			Product removedProduct = floristDao.removeProduct(id);
 			System.out.println("The product " + removedProduct + " has been removed from stock");
@@ -208,24 +204,16 @@ public class FloristController {
 
 	private void showTickets() throws FloristDaoException {
 
-		TicketController ticketController = new TicketController(ticketView, ticketDao);
 		ticketController.runDisplayTickets();
-//		ticketView.displayTicketsBanner();
-//		List<Ticket> tickets = ticketDao.getAllTickets();	
-//		ticketView.displayAllTickets(tickets);
-//		ticketView.displayOldReceiptsBanner();		
-//		LocalDate dateTicket = ticketView.getTicketDateChoice();
-//		tickets = ticketDao.getOldTickets(tickets, dateTicket);
-//		ticketView.displayOldTickets(tickets, dateTicket);
 	}
 
 	/*
 	 * Alb
 	 */
 	private void totalIncome() throws FloristDaoException {
-		float income = ticketDao.getTotalIncome();
-		ticketView.displayTotalIncome(income);
-
+		ticketController.getTotalIncome();
+//		float income = ticketDao.getTotalIncome();
+//		ticketView.displayTotalIncome(income);
 	}
 
 	private int getMenuProduct() {
