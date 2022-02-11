@@ -69,6 +69,12 @@ public class FloristDaoImpl implements FloristDao {
 		writeStock();
 		return removedProduct;
 	}
+	
+	public Product getProduct(int id) throws FloristDaoException {
+		loadStock();
+		Product wantedProduct = stock.get(id);
+		return wantedProduct;
+	}
 
 	public List<Product> getAllProducts() throws FloristDaoException {
 		loadStock();

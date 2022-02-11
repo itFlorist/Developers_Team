@@ -164,22 +164,26 @@ public class FloristController {
 			}
 		} while (keepGoing);
 
-		floristView.displayRemoveProductBanner();
-		int id = floristView.getProductIdChoice();
-		Product removedProduct = floristDao.removeProduct(id);
-		System.out.println(removedProduct);
-		floristView.displayRemoveResult(removedProduct);
-
 	}
 
-	private void addProductToReceipt() {
+	private void addProductToReceipt() throws FloristDaoException {
 		floristView.addProductToReceiptBanner();
 		int id = floristView.getProductIdChoice();
+		Product productToAdd = floristDao.getProduct(id);
+		
+		if (productToAdd == null) {
+			floristView.displayErrorMessage("Requested product is not available at stock");
+			return;
+		} else {
+//			 * -añadir producto a ticket
+//			 * -borrar producto de stock
+			Product removedProduct = floristDao.removeProduct(id);
+			System.out.println("The product " + removedProduct + " has been removed from stock");
+//			 * -mensaje transaccion exitosa
+			System.out.println("=)");
+		}
 //		FloristManagerDao.getiD();
 //			Floristeria floristeria(name, idProd, idTicket);
-//			get-> id;
-//			id = id++;
-//			setter <- id;
 
 		/*comprobar que id existe ---service
 //		if(currentTicket == null) {

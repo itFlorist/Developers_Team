@@ -26,8 +26,8 @@ floristList.txt
 
 (nombreFloristeria::idProducto::idTicket)
 
-Navarro::1::0
-Pepi::11::3
+1::Navarro::1::0
+999::Pepi::11::3
 ////////////////////////////////////////////////////
 NavarroFlorist.txt
 
@@ -47,11 +47,17 @@ NavarroFlorist.txt
 4::Roble::60.0::Tree::5.0::null::null
 5::Silla::85.0::Decoration::0.0::null::madera
 ////////////////////////////////////////////////////
+1::10::5
+id::idproducto::idTicket
+
+////////////////////////////////////////////////////
 PepiFlorist.txt
 
 ////////////////////////////////////////////////////
-NavarroTickets.txt
+"Navarro"Tickets.txt
 
+01::2022/5/23::779::999
+02::2022/5/23::779::779
 
 ////////////////////////////////////////////////////
 
