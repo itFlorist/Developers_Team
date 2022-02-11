@@ -20,7 +20,7 @@ import com.sprint3.dto.Product;
 import com.sprint3.dto.Ticket;
 import com.sprint3.dto.Tree;
 
-public class FloristDaoImpl implements FloristDao {
+public class FloristDaoFileImpl implements FloristDao {
 
 	/*
 	 * private void showFloristValue(List<Product> stock) {} private void
@@ -38,7 +38,7 @@ public class FloristDaoImpl implements FloristDao {
 
 	private final String DELIMITER = "::";
 
-	public FloristDaoImpl(String file) {
+	public FloristDaoFileImpl(String file) {
 		FLORIST_FILE = file;
 		TICKET_FILE = "ticket.txt";
 	}
@@ -46,7 +46,7 @@ public class FloristDaoImpl implements FloristDao {
 	public void addProductType(int id, Product product) throws FloristDaoException {
 		loadStock();
 		//----------------------------------------------------
-		FloristManagerDaoImpl fmdi = new FloristManagerDaoImpl("floristList.txt");
+		FloristManagerDaoFileImpl fmdi = new FloristManagerDaoFileImpl("floristList.txt");
 		String currentFlorist = FLORIST_FILE.split("_")[0];
 		System.out.println(currentFlorist);
 		System.out.println("id pre: " + id);
@@ -76,7 +76,8 @@ public class FloristDaoImpl implements FloristDao {
 		return wantedProduct;
 	}
 
-	public List<Product> getAllProducts() throws FloristDaoException {
+
+	public List<Product> getAllStock() throws FloristDaoException {
 		loadStock();
 		return new ArrayList<Product>(stock.values());
 	}
@@ -212,7 +213,7 @@ public class FloristDaoImpl implements FloristDao {
 			throw new FloristDaoException("Could not save Product data", e);
 		}
 		String productAsText;
-		List<Product> productList = this.getAllProducts();
+		List<Product> productList = this.getAllStock();
 		for (Product currentProduct : productList) {
 			// turn a Product into a string
 			productAsText = marshallProduct(currentProduct);
@@ -224,12 +225,5 @@ public class FloristDaoImpl implements FloristDao {
 		// Clean up
 		out.close();
 	}
-
-	public List<Product> getAllStock() throws FloristDaoException {
-		loadStock();
-		List<Product> products = getAllProducts();
-		return products;
-	}
-
 
 }

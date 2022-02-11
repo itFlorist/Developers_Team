@@ -12,13 +12,13 @@ public class Ticket {
 	private float totalPurchasePrice;
 	private List<Product> purchase;
   
+	private int floristId;
 	private int productId;
 	private String productName;
 	private float productPrice;
 	private String productFeature;
 
 	public Ticket() {
-
 	}
 
 	public Ticket(int ticketId) {
@@ -27,7 +27,6 @@ public class Ticket {
 	}
 
 	public Ticket(int ticketId, LocalDate date, float totalPurchasePrice) {
-		super();
 		this.ticketId = ticketId;
 		this.date = date;
 		this.totalPurchasePrice = totalPurchasePrice;
@@ -35,8 +34,7 @@ public class Ticket {
 	}
 
 	public Ticket(int ticketId, LocalDateTime date, float totalPurchasePrice, int productId, String productName,
-			float productPrice, String productFeature) {
-		super();
+			float productPrice, String productFeature, int floristId) {
 		this.ticketId = ticketId;
 		this.date = LocalDate.now();
 		this.totalPurchasePrice = totalPurchasePrice;
@@ -44,6 +42,7 @@ public class Ticket {
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.productFeature = productFeature;
+		this.floristId = floristId;
 	}
 
 	public int getTicketId() {

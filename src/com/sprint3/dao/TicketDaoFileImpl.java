@@ -14,16 +14,18 @@ import java.util.Scanner;
 
 import com.sprint3.dto.Ticket;
 
-public class TicketDaoImpl implements TicketDao {
+public class TicketDaoFileImpl implements TicketDao {
 
 	private Map<Integer, Ticket> tickets = new HashMap<>();
 	private final String TICKET_FILE;
 	private final String DELIMITER = "::";
 
-	public TicketDaoImpl() {
+	public TicketDaoFileImpl() {
 		TICKET_FILE = "ticket.txt";
 	}
 
+	addTicket!
+	
 	/*
 	 * Alb
 	 */
@@ -34,6 +36,11 @@ public class TicketDaoImpl implements TicketDao {
 			income = income + entry.getValue().getTotalPurchasePrice();
 		}
 		return income;
+	}
+	
+	public List<Ticket> getAllTickets() throws FloristDaoException {
+		loadTicket();
+		return new ArrayList<Ticket>(tickets.values());
 	}
 
 	private void loadTicket() throws FloristDaoException {
@@ -80,13 +87,14 @@ public class TicketDaoImpl implements TicketDao {
 		// |00001|07/07/2022 |85.95|
 		// | | | | | | | | | | | | |
 		// -------------------------
-		// [0] [1] [2]
+		// [0]       [1]       [2]
 		// ___________________________
 		// | | | | | | | | | | | | | |
 		// |000022 | Oak |49.99| 5.75|
 		// | | | | | | | | | | | | | |
 		// ---------------------------
-		// [3] [4] [5] [6]
+		// [3]       [4]   [5]   [6]
+		
 
 		String[] productTokens = ticketAsText.split(DELIMITER);
 		String ticketId = productTokens[0];
@@ -96,6 +104,7 @@ public class TicketDaoImpl implements TicketDao {
 //		String productName = productTokens[4];
 //		String productPrice = productTokens[5];
 //		String productFeature = productTokens[6];
+		miau
 
 		// A new Project object is created using the id to satisfy the
 		// requirements of the Project constructor
@@ -109,18 +118,4 @@ public class TicketDaoImpl implements TicketDao {
 		return ticketFromFile;
 	}
 
-	public List<Ticket> getAllTickets() throws FloristDaoException {
-		loadTicket();
-		List<Ticket> tickets = getTickets();
-		return tickets;
-	}
-
-	public List<Ticket> getTickets() throws FloristDaoException {
-		return new ArrayList<Ticket>(tickets.values());
-	}
-
-//	public List<Ticket> getOldTickets(List<Ticket> tickets, LocalDate date) throws FloristDaoException {
-//		loadTicket();
-//		return tickets;
-//	}
 }

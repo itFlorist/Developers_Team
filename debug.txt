@@ -1,13 +1,23 @@
-Product
-	-constructor
-	-atributo id
+FACTORIA
 
-id FloristList??
-check nombre Florist repetido --> donde?
+SERVICE
 
+--------------------------------
+agrupar metodos del View
+	FloristManagerView --> Oliver
+	FloristView --> Alberto
 
+getoTotalIncome()-->Alberto
 
+addProduct()
+	-cntroller
+	-dao
+idFloristeria
+	-asignar al crear Floristeria
+	-asignar a ticket al crear
+formato ticket bucle productos
 
+--------------------------------
 
 //////////////////////////////
 FloristDaoImpl --> TicketDaoImpl
@@ -24,7 +34,7 @@ comprobacions
 ////////////////////////////////////////////////////
 floristList.txt
 
-(nombreFloristeria::idProducto::idTicket)
+(idFloristeria:nombreFloristeria::idProducto::idTicket)
 
 1::Navarro::1::0
 999::Pepi::11::3
@@ -56,13 +66,7 @@ PepiFlorist.txt
 ////////////////////////////////////////////////////
 "Navarro"Tickets.txt
 
-01::2022/5/23::779::999
+01::2022/5/23::779::999 ---> producto(x4tokens)
 02::2022/5/23::779::779
 
 ////////////////////////////////////////////////////
-
-
-METODO INCREMENTO ID
-11 <-----10--> 10 Producto New
-
-2 <--1 ---->

@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.util.List;
 import com.sprint3.dao.FloristManagerDaoException;
 import com.sprint3.dao.FloristDao;
-import com.sprint3.dao.FloristDaoImpl;
+import com.sprint3.dao.FloristDaoFileImpl;
 import com.sprint3.dao.FloristManagerDao;
-import com.sprint3.dao.FloristManagerDaoImpl;
+import com.sprint3.dao.FloristManagerDaoFileImpl;
 import com.sprint3.dao.TicketDao;
-import com.sprint3.dao.TicketDaoImpl;
+import com.sprint3.dao.TicketDaoFileImpl;
 import com.sprint3.dto.Florist;
 import com.sprint3.gui.FloristManagerView;
 import com.sprint3.gui.FloristView;
@@ -30,23 +30,18 @@ public class FloristManagerController {
 		boolean keepGoing = true;
 		int menuSelection = -1;
 
-		// implementar que sólo te muestre la opción "add" si no hay floristerias
 		try {
 
 			do {
 				switch (getMenuSelection()) {
 				case 1:
 					addFlorist();
-					// System.out.println("ADD method under construction");
 					break;
 				case 2:
 					removeFlorist();
-					// System.out.println("REMOVE method under construction");
 					break;
 				case 3:
 					showFlorists();
-					// mejorar el formato de impresion
-					System.out.println("SHOW method under construction");
 					break;
 				case 4:
 					runFlorist();
@@ -67,20 +62,10 @@ public class FloristManagerController {
 
 	}// end run
 
-	private void removeFlorist() throws FloristManagerDaoException {
-		floristManagerView.displayRemoveFloristBanner();
-		String floristName = floristManagerView.getFloristName();
-		Florist removedFlorist = floristManagerDao.removeFlorist(floristName);
-		// System.out.println(removedFlorist);
-		floristManagerView.displayRemoveResult(removedFlorist);
-	}
-
 	private void addFlorist() throws FloristManagerDaoException {
 		floristManagerView.displayCreateFlorist();
 		String floristName = floristManagerView.getFloristName();
 		boolean existsName = floristManagerDao.checkName(floristName);
-//		System.out.println(floristName);
-//		System.out.println(existsName);
 
 		if (existsName) {
 			floristManagerView.displayFloristNameNotUnique();
@@ -90,6 +75,14 @@ public class FloristManagerController {
 			floristManagerView.displayCreateSuccessBanner(floristName);
 		}
 	}
+	
+	private void removeFlorist() throws FloristManagerDaoException {
+		floristManagerView.displayRemoveFloristBanner();
+		String floristName = floristManagerView.getFloristName();
+		Florist removedFlorist = floristManagerDao.removeFlorist(floristName);
+		floristManagerView.displayRemoveResult(removedFlorist);
+	}
+
 
 	private void showFlorists() throws FloristManagerDaoException {
 		floristManagerView.displayGetFlorist();
@@ -117,9 +110,9 @@ public class FloristManagerController {
 			try{  
 				result = file.createNewFile();
 				if (result) {
-					System.out.println("file created " + file.getCanonicalPath());
+					System.out.println("file created");
 				} else {
-					System.out.println("File already exist at location: " + file.getCanonicalPath());
+					System.out.println("File already exist");
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -129,11 +122,12 @@ public class FloristManagerController {
 		}
 
 		FloristView floristView = new FloristView(floristManagerView.getIo());
-		FloristDao floristDao = new FloristDaoImpl(floristName);
+		FloristDao floristDao = new FloristDaoFileImpl(floristName);
 		TicketView ticketView = new TicketView(floristManagerView.getIo());
-		TicketDao ticketDao = new TicketDaoImpl();
-		FloristController floristController = new FloristController(floristView, ticketView, floristDao, ticketDao, null);
-//		FloristController fc = new FloristController(new FloristView(new Teclado()), new FloristDaoImpl());
+		TicketDao ticketDao = new TicketDaoFileImpl();
+		TicketController ticketController = new TicketController(ticketView, ticketDao);
+		
+		FloristController floristController = new FloristController(floristView, floristDao, ticketController);
 		floristController.runProduct();
 	}
 
