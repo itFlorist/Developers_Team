@@ -1,6 +1,9 @@
 package com.sprint3.gui;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.sprint3.dto.Decoration;
@@ -29,7 +32,7 @@ public class FloristView {
 		io.print("3. Show Florist's stock.");
 		io.print("4. Show Florist's value.");
 		io.print("5. Get current purchase receipt.");
-		io.print("6. Get old purchase receipts.");
+		io.print("6. Show tickets.");
 		io.print("7. Display total income.");
 		io.print("0. Exit.\n");
 
@@ -202,85 +205,9 @@ public class FloristView {
 
 	}
 
-	public void displayOldReceiptsBanner() {
-		io.print("\n-- Old Purchase Receipts --");
+	
 
-	}
-
-	public void displayAllTickets(List<Ticket> tickets) {
-
-		String stockHeadings = String.format("%2s | %15s | %12s", "TICKETID", "TICKETDATE", "TOTALPRICE");
-		io.print(" ");
-		io.print(stockHeadings);
-		io.print(
-				"-----------------------------------------------------------------------------------------------------------------");
-		for (Ticket ticket : tickets) {
-			String ticketStock = String.format("%2s | %15s | %12s", ticket.getTicketId(), ticket.getDate(),
-					ticket.getTotalPurchasePrice());
-			io.print(ticketStock);
-		}
-		io.print(
-				"-----------------------------------------------------------------------------------------------------------------");
-		io.leerString("Please hit enter to continue");
-
-//		for (Ticket ticket : tickets) {
-//			io.print(ticket.toString());
-//			io.print("Showing all tickets..."); //Provisional para visualizar
-//		}
-	}
-
-	public LocalDate getTicketDateChoice() {
-		LocalDate dateTicket = null;
-		int year = io.leerInt("\nPlease enter Purchase's year: ", 2020, 2022);
-		int month = io.leerInt("\nPlease enter Purchase's month by number: ", 1, 12);
-		int day = io.leerInt("\nPlease enter Purchase's day: ", 1, 31);
-		dateTicket = LocalDate.of(year, month, day);
-		io.print("\nTicket's date: " + dateTicket);
-		return dateTicket;
-
-	}
-
-	public void displayOldTickets(List<Ticket> tickets, LocalDate dateTicket) {
-
-		String stockHeadings = String.format("%2s | %15s | %12s", "TICKETID", "TICKETDATE", "TOTALPRICE");
-		io.print(" ");
-		io.print(stockHeadings);
-		io.print(
-				"-----------------------------------------------------------------------------------------------------------------");
-		for (Ticket ticket : tickets) {
-			if (ticket.getDate() == dateTicket) {
-				foundTicket();
-				String ticketStock = String.format("%2s | %15s | %12s", ticket.getTicketId(), ticket.getDate(),
-						ticket.getTotalPurchasePrice());
-				io.print(ticketStock);
-			}
-		}
-		io.print(
-				"-----------------------------------------------------------------------------------------------------------------");
-		io.leerString("Please hit enter to continue");
-
-//		for (Ticket ticket : tickets) {
-//			if (ticket.getDate() == dateTicket) {
-//				foundTicket();
-//				io.print(ticket.toString());
-//
-//			} else {
-//				notFoundTicket();
-//				io.print("\nNo tickets for this date: " + dateTicket);
-//			}
-//		}
-
-	}
-
-	private void notFoundTicket() {
-		io.print("Not found ticket!");
-
-	}
-
-	private void foundTicket() {
-		io.print("Ticket found!");
-	}
-
+	
 	public void displayCurrentReceiptBanner() {
 		io.print("\n ########  CURRENT RECEIPT  ########");
 		io.print("\n ### nº :                        ###");
@@ -315,8 +242,5 @@ public class FloristView {
 
 	}
 
-	public void displayTicketsBanner() {
-		io.print("\n--- SHOW TICKETS ---");
-
-	}
+	
 }

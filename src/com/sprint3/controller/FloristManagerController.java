@@ -132,7 +132,7 @@ public class FloristManagerController {
 		FloristDao floristDao = new FloristDaoImpl(floristName);
 		TicketView ticketView = new TicketView(floristManagerView.getIo());
 		TicketDao ticketDao = new TicketDaoImpl();
-		FloristController floristController = new FloristController(floristView, ticketView, floristDao, ticketDao);
+		FloristController floristController = new FloristController(floristView, ticketView, floristDao, ticketDao, null);
 //		FloristController fc = new FloristController(new FloristView(new Teclado()), new FloristDaoImpl());
 		floristController.runProduct();
 	}

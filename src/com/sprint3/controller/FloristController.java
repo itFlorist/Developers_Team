@@ -10,6 +10,7 @@ import com.sprint3.dto.Product;
 import com.sprint3.dto.Ticket;
 import com.sprint3.gui.FloristView;
 import com.sprint3.gui.TicketView;
+import com.sprint3.controller.TicketController;
 
 public class FloristController {
 
@@ -17,12 +18,14 @@ public class FloristController {
 	private TicketView ticketView;
 	private FloristDao floristDao;
 	private TicketDao ticketDao;
+	private TicketController ticketController;
 
-	public FloristController(FloristView floristView, TicketView ticketView, FloristDao floristDao, TicketDao ticketDao) {
+	public FloristController(FloristView floristView, TicketView ticketView, FloristDao floristDao, TicketDao ticketDao, TicketController ticketController) {
 		this.floristView = floristView;
 		this.ticketView = ticketView;
 		this.floristDao = floristDao;
 		this.ticketDao = ticketDao;
+		this.ticketController = ticketController;
 	}
 
 	public void runProduct() {
@@ -51,7 +54,7 @@ public class FloristController {
 					showCurrentPurchaseReceipt();
 					break;
 				case 6:
-					showOldPurchaseReceipts();
+					showTickets();
 					break;
 				case 7:
 					totalIncome();
@@ -199,15 +202,17 @@ public class FloristController {
 		return floristView.menuReceiptPartial();
 	}
 
-	private void showOldPurchaseReceipts() throws FloristDaoException {
+	private void showTickets() throws FloristDaoException {
 
-		floristView.displayTicketsBanner();
-		List<Ticket> tickets = ticketDao.getAllTickets();	
-		floristView.displayAllTickets(tickets);
-		floristView.displayOldReceiptsBanner();		
-		LocalDate date = floristView.getTicketDateChoice();
-		tickets = ticketDao.getOldTickets(tickets, date);
-		floristView.displayOldTickets(tickets, date);
+		TicketController ticketController = new TicketController(ticketView, ticketDao);
+		ticketController.runDisplayTickets();
+//		ticketView.displayTicketsBanner();
+//		List<Ticket> tickets = ticketDao.getAllTickets();	
+//		ticketView.displayAllTickets(tickets);
+//		ticketView.displayOldReceiptsBanner();		
+//		LocalDate dateTicket = ticketView.getTicketDateChoice();
+//		tickets = ticketDao.getOldTickets(tickets, dateTicket);
+//		ticketView.displayOldTickets(tickets, dateTicket);
 	}
 
 	/*
