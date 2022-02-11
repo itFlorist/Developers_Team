@@ -17,5 +17,7 @@ public interface FloristDao {
 	void addProductType(int id, Product product) throws FloristDaoException;
 
 	public float getFloristValue() throws FloristDaoException;
+	
+	public Product getProduct(int id) throws FloristDaoException;
 
 }
