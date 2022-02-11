@@ -3,7 +3,9 @@ package com.sprint3.dao;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +56,7 @@ public class TicketDaoImpl implements TicketDao {
 			currentLine = scanner.nextLine();
 			// unmarshall the line into a Ticket
 			currentTicket = unmarshallTicket(currentLine);
-
+//			System.out.println(currentTicket);
 			// The Ticket id is used as a map key to put the currentTicket into the map
 			tickets.put(currentTicket.getTicketId(), currentTicket);
 		}
@@ -90,36 +92,35 @@ public class TicketDaoImpl implements TicketDao {
 		String ticketId = productTokens[0];
 		String date = productTokens[1];
 		String totalPurchasePrice = productTokens[2];
-		String productId = productTokens[3];
-		String productName = productTokens[4];
-		String productPrice = productTokens[5];
-		String productFeature = productTokens[6];
+//		String productId = productTokens[3];
+//		String productName = productTokens[4];
+//		String productPrice = productTokens[5];
+//		String productFeature = productTokens[6];
 
 		// A new Project object is created using the id to satisfy the
 		// requirements of the Project constructor
 		int id = Integer.parseInt(ticketId);
-		Ticket ticketFromFile = new Ticket(id);
+		float totalPurchase = Float.parseFloat(totalPurchasePrice);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate localDate = LocalDate.parse(date, formatter);
+//		LocalDate localDate = LocalDate.parse(date);
+		Ticket ticketFromFile = new Ticket(id, localDate, totalPurchase);
 
 		return ticketFromFile;
 	}
-	
+
 	public List<Ticket> getAllTickets() throws FloristDaoException {
 		loadTicket();
-
 		List<Ticket> tickets = getTickets();
 		return tickets;
 	}
 
 	public List<Ticket> getTickets() throws FloristDaoException {
-		loadTicket();
 		return new ArrayList<Ticket>(tickets.values());
 	}
-  
 
-	public List<Ticket> getOldTickets(List<Ticket> tickets, LocalDate date) throws FloristDaoException {
-		loadTicket();
-
-		return null;
-	}
-
+//	public List<Ticket> getOldTickets(List<Ticket> tickets, LocalDate date) throws FloristDaoException {
+//		loadTicket();
+//		return tickets;
+//	}
 }
