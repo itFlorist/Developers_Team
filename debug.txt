@@ -5,9 +5,10 @@ SERVICE
 --------------------------------
 agrupar metodos del View
 	FloristManagerView --> Oliver
-	FloristView --> Alberto
+	FloristView --> Alberto     OK
 
-getoTotalIncome()-->Alberto
+getoTotalIncome()-->Alberto  OK
+
 
 addProduct()
 	-cntroller

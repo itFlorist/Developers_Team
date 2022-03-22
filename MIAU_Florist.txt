@@ -1,3 +1,5 @@
 1::Oak::12.0::Tree::7.0::null::null
 3::Rose::4.0::Flower::0.0::red::null
 4::Margarita::55.0::Flower::0.0::white::null
+6::Centro de mesa::15.0::Decoration::0.0::null::madera
+7::LOK::58.0::Flower::0.0::AZUL::null

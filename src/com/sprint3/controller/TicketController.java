@@ -3,13 +3,10 @@ package com.sprint3.controller;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.sprint3.dao.FloristDao;
 import com.sprint3.dao.FloristDaoException;
-import com.sprint3.dto.Product;
+import com.sprint3.dao.TicketDao;
 import com.sprint3.dto.Ticket;
 import com.sprint3.gui.TicketView;
-import com.sprint3.dao.TicketDao;
-import com.sprint3.gui.FloristView;
 
 public class TicketController {
 
@@ -67,6 +64,12 @@ public class TicketController {
 		System.out.println("Unknown command!");
 
 	}
+
+	public void getTotalIncome() throws FloristDaoException {
+		float income = ticketDao.getTotalIncome();
+		ticketView.displayTotalIncome(income);
+	}
+
 }
 
 //	public void runProduct() {
