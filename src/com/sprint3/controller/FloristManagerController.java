@@ -14,15 +14,17 @@ import com.sprint3.dto.Florist;
 import com.sprint3.gui.FloristManagerView;
 import com.sprint3.gui.FloristView;
 import com.sprint3.gui.TicketView;
+import com.sprint3.service.FloristManagerService;
 
 public class FloristManagerController {
 
 	private FloristManagerView floristManagerView;
-	private FloristManagerDao floristManagerDao;
+//	private FloristManagerDao floristManagerDao;
+	private FloristManagerService floristManagerService;
 
-	public FloristManagerController(FloristManagerView floristManagerView, FloristManagerDao floristManagerDao) {
+	public FloristManagerController(FloristManagerView floristManagerView, FloristManagerService floristManagerService) {
 		this.floristManagerView = floristManagerView;
-		this.floristManagerDao = floristManagerDao;
+		this.floristManagerService = floristManagerService;
 	}
 
 	public void run() {
@@ -70,7 +72,7 @@ public class FloristManagerController {
 	private void removeFlorist() throws FloristManagerDaoException {
 		floristManagerView.displayRemoveFloristBanner();
 		String floristName = floristManagerView.getFloristName();
-		Florist removedFlorist = floristManagerDao.removeFlorist(floristName);
+		Florist removedFlorist = floristManagerService.removeFlorist(floristName);
 		// System.out.println(removedFlorist);
 		floristManagerView.displayRemoveResult(removedFlorist);
 	}
@@ -78,7 +80,7 @@ public class FloristManagerController {
 	private void addFlorist() throws FloristManagerDaoException {
 		floristManagerView.displayCreateFlorist();
 		String floristName = floristManagerView.getFloristName();
-		boolean existsName = floristManagerDao.checkName(floristName);
+		boolean existsName = floristManagerService.checkName(floristName);
 //		System.out.println(floristName);
 //		System.out.println(existsName);
 
@@ -86,18 +88,18 @@ public class FloristManagerController {
 			floristManagerView.displayFloristNameNotUnique();
 		} else {
 			Florist newFlorist = new Florist(floristName, 0, 0);
-			floristManagerDao.addFlorist(floristName, newFlorist);
+			floristManagerService.addFlorist(floristName, newFlorist);
 			floristManagerView.displayCreateSuccessBanner(floristName);
 		}
 	}
 
 	private void showFlorists() throws FloristManagerDaoException {
 		floristManagerView.displayGetFlorist();
-		System.out.println(floristManagerDao.getAllFlorists());
+		System.out.println(floristManagerService.getAllFlorists());
 	}
 
 	private int getMenuSelection() throws FloristManagerDaoException {
-		List<Florist> list = floristManagerDao.getAllFlorists();
+		List<Florist> list = floristManagerService.getAllFlorists();
 		if (list.isEmpty()) {
 			return floristManagerView.printMenuAndGetSelectionPartial();
 		} else {
@@ -107,7 +109,7 @@ public class FloristManagerController {
 
 	private void runFlorist() throws FloristManagerDaoException {
 		String floristName = floristManagerView.getFloristName();
-		boolean existsName = floristManagerDao.checkName(floristName);
+		boolean existsName = floristManagerService.checkName(floristName);
 
 		if(existsName) {
 			floristName += "_Florist.txt";

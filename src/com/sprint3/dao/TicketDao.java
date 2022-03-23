@@ -7,9 +7,9 @@ import com.sprint3.dto.Ticket;
 
 public interface TicketDao {
 
-	public float getTotalIncome() throws FloristDaoException;
+	public float getTotalIncome() throws TicketDaoException;
 
-	public List<Ticket> getAllTickets() throws FloristDaoException;
+	public List<Ticket> getAllTickets() throws TicketDaoException;
 	
 //	public List<Ticket> getTickets() throws FloristDaoException;
 	

@@ -9,6 +9,7 @@ import com.sprint3.dto.Product;
 import com.sprint3.dto.Ticket;
 import com.sprint3.gui.TicketView;
 import com.sprint3.dao.TicketDao;
+import com.sprint3.dao.TicketDaoException;
 import com.sprint3.gui.FloristView;
 
 public class TicketController {
@@ -22,7 +23,7 @@ public class TicketController {
 		this.ticketDao = ticketDao;
 	}
 
-	public void runDisplayTickets() throws FloristDaoException {
+	public void runDisplayTickets() throws TicketDaoException {
 
 		boolean keepGoing = true;
 		int menuSelection;
@@ -45,14 +46,14 @@ public class TicketController {
 		}
 	}
 
-	private void showAllTickets() throws FloristDaoException {
+	private void showAllTickets() throws TicketDaoException {
 
 		ticketView.displayTicketsBanner();
 		List<Ticket> tickets = ticketDao.getAllTickets();
 		ticketView.displayAllTickets(tickets);
 	}
 
-	private void shortByDate() throws FloristDaoException {
+	private void shortByDate() throws TicketDaoException {
 
 		ticketView.displayTicketsByDateBanner();
 		LocalDate dateTicket = ticketView.getTicketDateChoice();

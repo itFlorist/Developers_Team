@@ -27,7 +27,7 @@ public class TicketDaoImpl implements TicketDao {
 	/*
 	 * Alb
 	 */
-	public float getTotalIncome() throws FloristDaoException {
+	public float getTotalIncome() throws TicketDaoException {
 		loadTicket();
 		float income = 0;
 		for (Map.Entry<Integer, Ticket> entry : tickets.entrySet()) {
@@ -36,13 +36,13 @@ public class TicketDaoImpl implements TicketDao {
 		return income;
 	}
 
-	private void loadTicket() throws FloristDaoException {
+	private void loadTicket() throws TicketDaoException {
 		Scanner scanner;
 		try {
 			// Create Scanner for reading the file
 			scanner = new Scanner(new BufferedReader(new FileReader(TICKET_FILE)));
 		} catch (FileNotFoundException e) {
-			throw new FloristDaoException("-_- Could not load roster data into memory.", e);
+			throw new TicketDaoException("-_- Could not load roster data into memory.", e);
 		}
 		// currentLine holds the most recent line read from the file
 		String currentLine;
@@ -109,13 +109,13 @@ public class TicketDaoImpl implements TicketDao {
 		return ticketFromFile;
 	}
 
-	public List<Ticket> getAllTickets() throws FloristDaoException {
+	public List<Ticket> getAllTickets() throws TicketDaoException {
 		loadTicket();
 		List<Ticket> tickets = getTickets();
 		return tickets;
 	}
 
-	public List<Ticket> getTickets() throws FloristDaoException {
+	public List<Ticket> getTickets() throws TicketDaoException {
 		return new ArrayList<Ticket>(tickets.values());
 	}
 

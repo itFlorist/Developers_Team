@@ -6,6 +6,7 @@ import java.util.List;
 import com.sprint3.dao.FloristDao;
 import com.sprint3.dao.FloristDaoException;
 import com.sprint3.dao.TicketDao;
+import com.sprint3.dao.TicketDaoException;
 import com.sprint3.dto.Product;
 import com.sprint3.dto.Ticket;
 import com.sprint3.gui.FloristView;
@@ -206,7 +207,7 @@ public class FloristController {
 		return floristView.menuReceiptPartial();
 	}
 
-	private void showTickets() throws FloristDaoException {
+	private void showTickets() throws TicketDaoException {
 
 		TicketController ticketController = new TicketController(ticketView, ticketDao);
 		ticketController.runDisplayTickets();
@@ -222,7 +223,7 @@ public class FloristController {
 	/*
 	 * Alb
 	 */
-	private void totalIncome() throws FloristDaoException {
+	private void totalIncome() throws TicketDaoException {
 		float income = ticketDao.getTotalIncome();
 		ticketView.displayTotalIncome(income);
 

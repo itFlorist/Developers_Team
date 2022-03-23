@@ -71,8 +71,7 @@ public class TicketView {
 		String stockHeadings = String.format("%8s | %15s | %12s", "TICKETID", "TICKETDATE", "TOTALPRICE");
 		io.print(" ");
 		io.print(stockHeadings);
-		io.print(
-				"-----------------------------------------------------------------------------------------------------------------");
+		io.print("-----------------------------------------------------------------------------------------------------------------");
 
 		for (Ticket ticket : tickets) {
 			if (ticket.getDate().isEqual(dateTicket)) {
@@ -85,16 +84,17 @@ public class TicketView {
 				found = true;
 			}
 		}
-		io.print(
-				"-----------------------------------------------------------------------------------------------------------------");
+//		io.print("-----------------------------------------------------------------------------------------------------------------");
 		if (!found) {
 			notFoundTicket(dateTicket);
+			io.print("-----------------------------------------------------------------------------------------------------------------");
+
 		}
 //		io.leerString("Please hit enter to continue");
 	}
 
 	private void notFoundTicket(LocalDate dateTicket) {
-		io.print("\n***** No tickets from this date: " + dateTicket + " *****");
+		io.print("***** No tickets from this date: " + dateTicket + " *****");
 
 	}
 
