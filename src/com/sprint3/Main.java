@@ -13,6 +13,7 @@ import com.sprint3.dao.FloristManagerDaoImpl;
 import com.sprint3.gui.FloristManagerView;
 import com.sprint3.gui.FloristView;
 import com.sprint3.gui.Teclado;
+import com.sprint3.service.FloristManagerService;
 
 public class Main {
 
@@ -37,7 +38,8 @@ public class Main {
 		Teclado myIo = new Teclado();
 		FloristManagerView myView = new FloristManagerView(myIo);
 		FloristManagerDao myDao = new FloristManagerDaoImpl(filePath);
-		FloristManagerController controller = new FloristManagerController(myView, myDao);
+		FloristManagerService myService = new FloristManagerService(myDao);
+		FloristManagerController controller = new FloristManagerController(myView, myService);
 
 //		FloristView fView = new FloristView(myIo);
 //		FloristDao fDao = new FloristDaoImpl();
