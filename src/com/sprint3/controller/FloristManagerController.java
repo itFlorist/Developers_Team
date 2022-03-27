@@ -3,11 +3,11 @@ package com.sprint3.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import com.sprint3.dao.FloristManagerDaoException;
+
 import com.sprint3.dao.FloristDao;
 import com.sprint3.dao.FloristDaoFileImpl;
 import com.sprint3.dao.FloristManagerDao;
-import com.sprint3.dao.FloristManagerDaoFileImpl;
+import com.sprint3.dao.FloristManagerDaoException;
 import com.sprint3.dao.TicketDao;
 import com.sprint3.dao.TicketDaoFileImpl;
 import com.sprint3.dto.Florist;
@@ -75,14 +75,13 @@ public class FloristManagerController {
 			floristManagerView.displayCreateSuccessBanner(floristName);
 		}
 	}
-	
+
 	private void removeFlorist() throws FloristManagerDaoException {
 		floristManagerView.displayRemoveFloristBanner();
 		String floristName = floristManagerView.getFloristName();
 		Florist removedFlorist = floristManagerDao.removeFlorist(floristName);
 		floristManagerView.displayRemoveResult(removedFlorist);
 	}
-
 
 	private void showFlorists() throws FloristManagerDaoException {
 		floristManagerView.displayGetFlorist();
@@ -102,12 +101,12 @@ public class FloristManagerController {
 		String floristName = floristManagerView.getFloristName();
 		boolean existsName = floristManagerDao.checkName(floristName);
 
-		if(existsName) {
+		if (existsName) {
 			floristName += "_Florist.txt";
-			
-			File file = new File(floristName);  
-			boolean result;  
-			try{  
+
+			File file = new File(floristName);
+			boolean result;
+			try {
 				result = file.createNewFile();
 				if (result) {
 					System.out.println("file created");
@@ -126,7 +125,7 @@ public class FloristManagerController {
 		TicketView ticketView = new TicketView(floristManagerView.getIo());
 		TicketDao ticketDao = new TicketDaoFileImpl();
 		TicketController ticketController = new TicketController(ticketView, ticketDao);
-		
+
 		FloristController floristController = new FloristController(floristView, floristDao, ticketController);
 		floristController.runProduct();
 	}

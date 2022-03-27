@@ -1,15 +1,10 @@
 package com.sprint3.gui;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.sprint3.dto.Decoration;
 import com.sprint3.dto.Flower;
 import com.sprint3.dto.Product;
-import com.sprint3.dto.Ticket;
 import com.sprint3.dto.Tree;
 
 public class FloristView {
@@ -24,6 +19,7 @@ public class FloristView {
 		this.io = io;
 	}
 
+	// ********Menu principal de Florist********
 	public int menuProduct() {
 
 		io.print("\n== MAIN MENU ==");
@@ -40,6 +36,11 @@ public class FloristView {
 
 	}
 
+	public void displayExitBanner() {
+		io.print("Bye bye!");
+	}
+
+	// **************ADD PRODUCT*********************
 	/**
 	 * Method that prints on console the AddMenu and gets an option chosen by the
 	 * user
@@ -62,15 +63,6 @@ public class FloristView {
 
 		return io.leerInt("Please select one option from the above.");
 
-	}
-
-	public void displayErrorMessage(String errorMsg) {
-		io.print("=== ERROR ===");
-		io.print(errorMsg);
-	}
-
-	public void displayUnknownCommandBanner() {
-		io.print("Unknown command!");
 	}
 
 	public void displayCreateProductBanner(String product) {
@@ -124,6 +116,30 @@ public class FloristView {
 		io.print(product + " successfully created. ");
 	}
 
+	public void unknownCommand() {
+		io.print("Unknown command!");
+
+	}
+
+	// *************DELETE PRODUCT*************
+	public void displayRemoveProductBanner() {
+		io.print("\n=== Delete Product ===");
+	}
+
+	public int getProductIdChoice() {
+		return io.leerInt("Please enter Product Id: ");
+	}
+
+	public void displayRemoveResult(Product productRecord) {
+		if (productRecord != null) {
+			io.print("Product successfully removed.");
+		} else {
+			io.print("No such Product.");
+		}
+		io.leerString("Please hit enter to continue.");
+	}
+
+	// **************STOCK*********************
 	public void displayStockBanner() {
 		io.print("");
 		io.print("=== Stock ===");
@@ -166,31 +182,7 @@ public class FloristView {
 		io.leerString("Please hit enter to continue");
 	}
 
-	public void displayExitBanner() {
-		io.print("Bye bye!");
-	}
-
-	public void displayRemoveProductBanner() {
-		io.print("\n=== Delete Product ===");
-	}
-
-	public int getProductIdChoice() {
-		return io.leerInt("Please enter Product Id: ");
-	}
-
-	public void displayRemoveResult(Product productRecord) {
-		if (productRecord != null) {
-			io.print("Product successfully removed.");
-		} else {
-			io.print("No such Product.");
-		}
-		io.leerString("Please hit enter to continue.");
-	}
-
-	public void unknownCommand() {
-		io.print("Unknown command!");
-
-	}
+	// **************STOCK VALUE************************
 
 	/**
 	 * Method that shows on console the value recieved by parameter.
@@ -205,9 +197,7 @@ public class FloristView {
 
 	}
 
-	
-
-	
+	// **************PURCHASE*****************************
 	public void displayCurrentReceiptBanner() {
 		io.print("\n ########  CURRENT RECEIPT  ########");
 		io.print("\n ### nº :                        ###");
@@ -215,6 +205,7 @@ public class FloristView {
 		io.print("\n ###################################");
 	}
 
+	// ************RECEIPTS*******************
 	public int menuReceiptComplete() {
 
 		io.print("\n== RECEIPT MENU ==");
@@ -242,5 +233,10 @@ public class FloristView {
 
 	}
 
-	
+	// ************USADOS EN VARIOS METODOS*********
+	public void displayErrorMessage(String errorMsg) {
+		io.print("=== ERROR ===");
+		io.print(errorMsg);
+	}
+
 }

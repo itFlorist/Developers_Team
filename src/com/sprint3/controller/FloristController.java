@@ -1,27 +1,22 @@
 package com.sprint3.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import com.sprint3.dao.FloristDao;
 import com.sprint3.dao.FloristDaoException;
-import com.sprint3.dao.TicketDao;
 import com.sprint3.dto.Product;
-import com.sprint3.dto.Ticket;
 import com.sprint3.gui.FloristView;
-import com.sprint3.gui.TicketView;
-import com.sprint3.controller.TicketController;
+import com.sprint3.service.FloristService;
 
 public class FloristController {
 
 	private FloristView floristView;
-	private FloristDao floristDao;
+	private FloristService floristService;
 	private TicketController ticketController;
 
-
-	public FloristController(FloristView floristView, FloristDao floristDao, TicketController ticketController) {
+	public FloristController(FloristView floristView, FloristService floristService,
+			TicketController ticketController) {
 		this.floristView = floristView;
-		this.floristDao = floristDao;
+		this.floristService = floristService;
 		this.ticketController = ticketController;
 	}
 
@@ -98,26 +93,26 @@ public class FloristController {
 	private void addProduct(String product) throws FloristDaoException {
 		floristView.displayCreateProductBanner(product);
 		Product newProduct = floristView.getNewProductInfo(product);
-		floristDao.addProductType(newProduct.getId(), newProduct);
+		floristService.addProductType(newProduct.getId(), newProduct);
 		floristView.displayCreateSuccessBanner(product);
 	}
 
 	private void removeProduct() throws FloristDaoException {
 		floristView.displayRemoveProductBanner();
 		int id = floristView.getProductIdChoice();
-		Product removedProduct = floristDao.removeProduct(id);
+		Product removedProduct = floristService.removeProduct(id);
 		floristView.displayRemoveResult(removedProduct);
 	}
 
 	private void showFloristStock() throws FloristDaoException {
 		floristView.displayStockBanner();
-		List<Product> stock = floristDao.getAllStock();
+		List<Product> stock = floristService.getAllStock();
 		floristView.displayTotalTypeProducts(stock);
 		floristView.displayFloristStock(stock);
 	}
 
 	private void showFloristValue() throws FloristDaoException {
-		float value = floristDao.getFloristValue();
+		float value = floristService.getFloristValue();
 		floristView.displayStockValue(value);
 	}
 
@@ -165,15 +160,15 @@ public class FloristController {
 	private void addProductToReceipt() throws FloristDaoException {
 		floristView.addProductToReceiptBanner();
 		int id = floristView.getProductIdChoice();
-		Product productToAdd = floristDao.getProduct(id);
-		
+		Product productToAdd = floristService.getProduct(id);
+
 		if (productToAdd == null) {
 			floristView.displayErrorMessage("Requested product is not available at stock");
 			return;
 		} else {
-			 * -añadir producto a ticket
+//			 * -añadir producto a ticket
 //			 * -borrar producto de stock
-			Product removedProduct = floristDao.removeProduct(id);
+			Product removedProduct = floristService.removeProduct(id);
 			System.out.println("The product " + removedProduct + " has been removed from stock");
 //			 * -mensaje transaccion exitosa
 			System.out.println("=)");
@@ -181,17 +176,12 @@ public class FloristController {
 //		FloristManagerDao.getiD();
 //			Floristeria floristeria(name, idProd, idTicket);
 
-		/*comprobar que id existe ---service
-//		if(currentTicket == null) {
-//			currentTicket = new Ticket();
-//		}
-		//si idExiste{
-		 * -añadir producto a ticket
-		 * -borrar producto de stock
-		 * -mensaje transaccion exitosa
-		 * }else{
-		 * imprimir error en view
-     */
+		/*
+		 * comprobar que id existe ---service // if(currentTicket == null) { //
+		 * currentTicket = new Ticket(); // } //si idExiste{ -añadir producto a ticket
+		 * -borrar producto de stock -mensaje transaccion exitosa }else{ imprimir error
+		 * en view
+		 */
 	}
 
 	private int getReceiptMenuSelectionC() {
@@ -203,7 +193,6 @@ public class FloristController {
 	}
 
 	private void showTickets() throws FloristDaoException {
-
 		ticketController.runDisplayTickets();
 	}
 
@@ -212,8 +201,6 @@ public class FloristController {
 	 */
 	private void totalIncome() throws FloristDaoException {
 		ticketController.getTotalIncome();
-//		float income = ticketDao.getTotalIncome();
-//		ticketView.displayTotalIncome(income);
 	}
 
 	private int getMenuProduct() {

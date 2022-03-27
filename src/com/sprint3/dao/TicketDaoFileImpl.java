@@ -3,7 +3,6 @@ package com.sprint3.dao;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -24,8 +23,8 @@ public class TicketDaoFileImpl implements TicketDao {
 		TICKET_FILE = "ticket.txt";
 	}
 
-	addTicket!
-	
+	// addTicket!
+
 	/*
 	 * Alb
 	 */
@@ -37,7 +36,7 @@ public class TicketDaoFileImpl implements TicketDao {
 		}
 		return income;
 	}
-	
+
 	public List<Ticket> getAllTickets() throws FloristDaoException {
 		loadTicket();
 		return new ArrayList<Ticket>(tickets.values());
@@ -87,14 +86,13 @@ public class TicketDaoFileImpl implements TicketDao {
 		// |00001|07/07/2022 |85.95|
 		// | | | | | | | | | | | | |
 		// -------------------------
-		// [0]       [1]       [2]
+		// [0] [1] [2]
 		// ___________________________
 		// | | | | | | | | | | | | | |
 		// |000022 | Oak |49.99| 5.75|
 		// | | | | | | | | | | | | | |
 		// ---------------------------
-		// [3]       [4]   [5]   [6]
-		
+		// [3] [4] [5] [6]
 
 		String[] productTokens = ticketAsText.split(DELIMITER);
 		String ticketId = productTokens[0];
@@ -104,7 +102,7 @@ public class TicketDaoFileImpl implements TicketDao {
 //		String productName = productTokens[4];
 //		String productPrice = productTokens[5];
 //		String productFeature = productTokens[6];
-		miau
+		// miau
 
 		// A new Project object is created using the id to satisfy the
 		// requirements of the Project constructor
