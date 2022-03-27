@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sprint3.dao.FloristDao;
 import com.sprint3.dao.FloristDaoException;
+import com.sprint3.dao.FloristDaoFileImpl;
 import com.sprint3.dto.Product;
 
 public class FloristService {
@@ -12,6 +13,10 @@ public class FloristService {
 
 	public FloristService(FloristDao floristDao) {
 		this.floristDao = floristDao;
+	}
+
+	public FloristService(String name) {
+		this.floristDao = new FloristDaoFileImpl(name);
 	}
 
 	public void addProductType(int id, Product newProduct) throws FloristDaoException {
